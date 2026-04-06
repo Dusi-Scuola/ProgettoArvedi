@@ -115,7 +115,6 @@ public class App {
         }
         else {
             System.out.println("Bye.");
-            System.out.println("test.");
         }
     }
 }
