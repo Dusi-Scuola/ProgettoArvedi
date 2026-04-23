@@ -4,35 +4,36 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="23.0" layoutY="14.0" prefHeight="17.0" prefWidth="110.0" text="GENERA QUADRO" />
       <TextField fx:id="txtTipoQuadro" layoutX="23.0" layoutY="45.0" promptText="Tipologia" />
       <TextField fx:id="txtCodiceQuadro" layoutX="23.0" layoutY="78.0" promptText="Codice" />
       <Button fx:id="btnTecnicoEsterno" layoutX="35.0" layoutY="322.0" mnemonicParsing="false" onAction="#CreaQuandroEsterno" text="Crea Tecnico Esterno" />
       <Label layoutX="249.0" layoutY="14.0" text="GENERA CABINA" />
-      <MenuButton layoutX="249.0" layoutY="45.0" mnemonicParsing="false" text="Quadri">
+      <MenuButton fx:id="listQuadri" layoutX="250.0" layoutY="114.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Quadri">
         <items>
           <MenuItem mnemonicParsing="false" text="Action 1" />
           <MenuItem mnemonicParsing="false" text="Action 2" />
         </items>
       </MenuButton>
-      <TextField fx:id="txtCodiceCabina" layoutX="249.0" layoutY="78.0" promptText="Codice" />
-      <TextField fx:id="txtPosizione" layoutX="249.0" layoutY="113.0" promptText="Posizione" />
+      <TextField fx:id="txtCodiceCabina" layoutX="250.0" layoutY="45.0" promptText="Codice" />
+      <TextField fx:id="txtPosizione" layoutX="250.0" layoutY="78.0" promptText="Posizione" />
       <Label layoutX="448.0" layoutY="14.0" text="GENERA TECNICO INTERNO" />
       <Button fx:id="btnCabina" layoutX="284.0" layoutY="150.0" mnemonicParsing="false" onAction="#CreaCabina" text="Crea Cabina" />
       <TextField fx:id="txtNomeTecnico" layoutX="449.0" layoutY="45.0" promptText="Nome" />
       <TextField fx:id="txtCognomeTecnico" layoutX="449.0" layoutY="78.0" promptText="Cognome" />
-      <Button fx:id="btnTecnicoInterno" layoutX="461.0" layoutY="126.0" mnemonicParsing="false" onAction="#CreaTecnicoInterno" text="Crea Tecnico Interno" />
+      <Button fx:id="btnTecnicoInterno" layoutX="462.0" layoutY="114.0" mnemonicParsing="false" onAction="#CreaTecnicoInterno" text="Crea Tecnico Interno" />
       <Label layoutX="23.0" layoutY="192.0" text="GENERA TECNICO ESTERNO" />
       <TextField fx:id="txtNomeEsterno" layoutX="23.0" layoutY="217.0" promptText="Nome" />
       <TextField fx:id="txtCognomeEsterno" layoutX="23.0" layoutY="252.0" promptText="Cognome" />
       <TextField fx:id="txtAziendaEsterno" layoutX="23.0" layoutY="286.0" promptText="Azienda" />
-      <Button fx:id="btnQuadro" layoutX="58.0" layoutY="139.0" mnemonicParsing="false" onAction="#CreaQuadro" text="Crea Quadro" />
+      <Button fx:id="btnQuadro" layoutX="57.0" layoutY="114.0" mnemonicParsing="false" onAction="#CreaQuadro" text="Crea Quadro" />
       <Label layoutX="249.0" layoutY="192.0" text="GENERA TIPOLOGIA QUADRO" />
       <TextField fx:id="txtNomeTipo" layoutX="250.0" layoutY="217.0" promptText="Nome" />
       <TextField fx:id="txtDescrizioneTipo" layoutX="250.0" layoutY="252.0" prefHeight="62.0" prefWidth="149.0" promptText="Descrizione" />
@@ -41,5 +42,28 @@
       <TextField fx:id="txtDescrizioneControllo" layoutX="450.0" layoutY="252.0" prefHeight="62.0" prefWidth="149.0" promptText="Descrizione" />
       <TextField fx:id="txtNomeControllo" layoutX="449.0" layoutY="217.0" promptText="Nome" />
       <Button fx:id="btnControllo" layoutX="477.0" layoutY="322.0" mnemonicParsing="false" onAction="#CreaControllo" text="Crea Controllo" />
+      <Label layoutX="23.0" layoutY="361.0" text="GENERA INTERVENTO" />
+      <TextField fx:id="txtPriorita" layoutX="23.0" layoutY="388.0" promptText="Priorità (valore numerico)" />
+      <TextField fx:id="txtCodiceIntervento" layoutX="24.0" layoutY="422.0" promptText="Codice" />
+      <TextField fx:id="txtNote" layoutX="25.0" layoutY="458.0" prefHeight="62.0" prefWidth="149.0" promptText="Note dell'intervento" />
+      <MenuButton fx:id="listCabina" layoutX="25.0" layoutY="532.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Cabina">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Action 1" />
+            <MenuItem mnemonicParsing="false" text="Action 2" />
+         </items>
+      </MenuButton>
+      <MenuButton fx:id="listPersonale" layoutX="25.0" layoutY="566.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Personale">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Action 1" />
+            <MenuItem mnemonicParsing="false" text="Action 2" />
+         </items>
+      </MenuButton>
+      <RadioButton fx:id="radPositivo" layoutX="24.0" layoutY="603.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="149.0" text="Esito positivo">
+         <toggleGroup>
+            <ToggleGroup fx:id="esito" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="radNegativo" layoutX="25.0" layoutY="633.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="149.0" selected="true" text="Esito negativo" toggleGroup="$esito" />
+      <Button fx:id="btnTecnicoEsterno11" layoutX="49.0" layoutY="662.0" mnemonicParsing="false" onAction="#CreaQuandroEsterno" text="Crea Intervento" />
    </children>
 </AnchorPane>
