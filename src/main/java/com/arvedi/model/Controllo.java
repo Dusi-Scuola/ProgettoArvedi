@@ -12,5 +12,19 @@ package com.arvedi.model;
  *  It is completely independent.
  */
 public class Controllo{
+	 //DICHIARAZIONE ATTRIBUTI
+    private String descrizione;
+    
+//COSTRUTTORE E METODI GETTER E SETTER
+    public Controllo(String descrizione) {
+        this.descrizione = descrizione;
+        }
 
+        public String getdescrizione() {
+        return descrizione;
+        }
+
+        public void setdescrizione(String descrizione) {
+        this.descrizione = descrizione;
+        }
 }
