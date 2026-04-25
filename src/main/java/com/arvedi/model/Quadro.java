@@ -18,7 +18,6 @@ public class Quadro{
 	
 //COSTRUTTORE E METODI GETTER E SETTER
 	public Quadro(String tipologia, String codiceQuadro) {
-		super();
 		this.tipologia = tipologia;
 		this.codiceQuadro = codiceQuadro;
 		}
