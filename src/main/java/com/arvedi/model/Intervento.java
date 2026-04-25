@@ -23,61 +23,79 @@ public class Intervento{
 	private boolean esito;
 	private int priorita;
 	
-	public Intervento(Cabina cabinaSelezionata, String codiceIntervento, LocalDate data, String note, boolean esito, int priorita) {
-        this.cabinaSelezionata = cabinaSelezionata;
-        this.codiceIntervento = codiceIntervento;
-        this.data = data;
-        this.note = note;
-        this.esito = esito;
-        this.priorita = priorita;
-        ArrayList<Tecnico> personale = new ArrayList<Tecnico>();
-        }
+	public Intervento(Cabina cabinaSelezionata, String codiceIntervento, ArrayList<Quadro> personale, LocalDate data,
+			String note, boolean esito, int priorita) {
+		this.cabinaSelezionata = cabinaSelezionata;
+		this.codiceIntervento = codiceIntervento;
+		this.personale = personale;
+		this.data = data;
+		this.note = note;
+		this.esito = esito;
+		this.priorita = priorita;
+	}
+
+	public Cabina getCabinaSelezionata() {
+		return cabinaSelezionata;
+	}
+
+	public void setCabinaSelezionata(Cabina cabinaSelezionata) {
+		this.cabinaSelezionata = cabinaSelezionata;
+	}
 
 	public String getCodiceIntervento() {
 		return codiceIntervento;
 	}
- 
+
 	public void setCodiceIntervento(String codiceIntervento) {
 		this.codiceIntervento = codiceIntervento;
 	}
- 
-	public String getNote() {
-		return note;
+
+	public ArrayList<Quadro> getPersonale() {
+		return personale;
 	}
- 
-	public void setNote(String note) {
-		this.note = note;
+
+	public void setPersonale(ArrayList<Quadro> personale) {
+		this.personale = personale;
 	}
-	
+
 	public LocalDate getData() {
 		return data;
 	}
- 
+
 	public void setData(LocalDate data) {
 		this.data = data;
 	}
-	
-	public boolean getEsito() {
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+	public boolean isEsito() {
 		return esito;
 	}
- 
+
 	public void setEsito(boolean esito) {
 		this.esito = esito;
 	}
-	
+
 	public int getPriorita() {
 		return priorita;
 	}
- 
+
 	public void setPriorita(int priorita) {
 		this.priorita = priorita;
 	}
- 
-	public Cabina getCabina () {
-		return cabinaSelezionata;
+
+	@Override
+	public String toString() {
+		return "Intervento [cabinaSelezionata=" + cabinaSelezionata + ", codiceIntervento=" + codiceIntervento
+				+ ", personale=" + personale + ", data=" + data + ", note=" + note + ", esito=" + esito + ", priorita="
+				+ priorita + "]";
 	}
- 
-	public void addTecnico(Tecnico a) {
-		personale.add(a);
-	}
+	
+	
 }

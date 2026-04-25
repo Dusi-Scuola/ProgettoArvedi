@@ -18,33 +18,39 @@ public class Cabina{
 	private String posizione;
 	private ArrayList<Quadro> quadri;
 	
-	 public Cabina(String codiceCabina, String posizione) {
-	        this.codiceCabina = codiceCabina;
-	        this.posizione = posizione;
-	        ArrayList<Quadro> quadri = new ArrayList<Quadro>();
-	        }
-	 
-	 public String getCodiceCabina() {
-			return codiceCabina;
-		}
-	 
-	 public void setCodiceCabina(String codiceCabina) {
-			this.codiceCabina = codiceCabina;
-		}
-	 
-	 public String getPosizione() {
-			return posizione;
-		}
-	 
-	 public void setPosizione(String posizione) {
-			this.posizione = posizione;
-		}
-	 
-	 public Quadro getQuadri () {
-			return quadri;
-		}
-	 
-	 public void addQuadri(Quadro a) {
-			quadri.add(a);
-		}
+	public Cabina(String codiceCabina, String posizione, ArrayList<Quadro> quadri) {
+		this.codiceCabina = codiceCabina;
+		this.posizione = posizione;
+		this.quadri = quadri;
+	}
+
+	public String getCodiceCabina() {
+		return codiceCabina;
+	}
+
+	public void setCodiceCabina(String codiceCabina) {
+		this.codiceCabina = codiceCabina;
+	}
+
+	public String getPosizione() {
+		return posizione;
+	}
+
+	public void setPosizione(String posizione) {
+		this.posizione = posizione;
+	}
+
+	public ArrayList<Quadro> getQuadri() {
+		return quadri;
+	}
+
+	public void setQuadri(ArrayList<Quadro> quadri) {
+		this.quadri = quadri;
+	}
+	
+	@Override
+	public String toString() {
+		return "Cabina [codiceCabina=" + codiceCabina + ", posizione=" + posizione + ", quadri=" + quadri + "]";
+	}
+	
 }
