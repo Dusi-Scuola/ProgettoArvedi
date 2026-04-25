@@ -21,10 +21,10 @@ public class Controllo{
         }
 
         public String getdescrizione() {
-        return descrizione;
+        	return descrizione;
         }
 
         public void setdescrizione(String descrizione) {
-        this.descrizione = descrizione;
+        	this.descrizione = descrizione;
         }
 }

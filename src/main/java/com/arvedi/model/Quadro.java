@@ -23,10 +23,10 @@ public class Quadro{
 		}
 
 		public String gettipologia() {
-		return tipologia;
+			return tipologia;
 		}
 
 		public void setcodiceQuadro(String codiceQuadro) {
-		this.codiceQuadro = codiceQuadro;
+			this.codiceQuadro = codiceQuadro;
 		}
 }
