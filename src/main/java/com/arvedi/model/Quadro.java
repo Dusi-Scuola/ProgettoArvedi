@@ -12,5 +12,22 @@ package com.arvedi.model;
  *  It is completely independent.
  */
 public class Quadro{
+	//DICHIARAZIONE ATTRIBUTI
+	private String tipologia;
+	private String codiceQuadro;
+	
+//COSTRUTTORE E METODI GETTER E SETTER
+	public Quadro(String tipologia, String codiceQuadro) {
+		super();
+		this.tipologia = tipologia;
+		this.codiceQuadro = codiceQuadro;
+		}
 
+		public String gettipologia() {
+		return tipologia;
+		}
+
+		public void setcodiceQuadro(String codiceQuadro) {
+		this.codiceQuadro = codiceQuadro;
+		}
 }
