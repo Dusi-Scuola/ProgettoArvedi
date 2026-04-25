@@ -23,19 +23,19 @@ public class TipoQuadro{
         }
 
         public String getnome() {
-        return nome;
+        	return nome;
         }
 
         public void setnome(String nome) {
-        this.nome = nome;
+        	this.nome = nome;
         }
         
         public String getdescrizione() {
-        return descrizione;
+        	return descrizione;
         }
 
         public void setdescrizione(String descrizione) {
-        this.descrizione = descrizione;
+        	this.descrizione = descrizione;
         }    
 }
 
