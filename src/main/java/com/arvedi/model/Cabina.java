@@ -13,37 +13,38 @@ import java.util.ArrayList;
  *  It is completely independent.
  */
 public class Cabina{
-	private String CodiceCabina;
-	private String Posizione;
-	private ArrayList<Quadro> Quadri = new ArrayList<Quadro>();
 	
-	 public Cabina(String CodiceCabina, String Posizione, ArrayList<Quadro>) {
-	        this.CodiceCabina = CodiceCabina;
-	        this.Posizione = Posizione;
-	        this.Quadri = ArrayList<Quadro>;
+	private String codiceCabina;
+	private String posizione;
+	private ArrayList<Quadro> quadri;
+	
+	 public Cabina(String codiceCabina, String posizione) {
+	        this.codiceCabina = codiceCabina;
+	        this.posizione = posizione;
+	        ArrayList<Quadro> quadri = new ArrayList<Quadro>();
 	        }
 	 
 	 public String getCodiceCabina() {
-			return CodiceCabina;
+			return codiceCabina;
 		}
 	 
-	 public void CodiceCabina(String CodiceCabina) {
-			this.CodiceCabina = CodiceCabina;
+	 public void setCodiceCabina(String codiceCabina) {
+			this.codiceCabina = codiceCabina;
 		}
 	 
 	 public String getPosizione() {
-			return Posizione;
+			return posizione;
 		}
 	 
-	 public void setPosizione(String Posizione) {
-			this.Posizione = Posizione;
+	 public void setPosizione(String posizione) {
+			this.posizione = posizione;
 		}
 	 
-	 public Quadro Quadri () {
-			return Quadri;
+	 public Quadro getQuadri () {
+			return quadri;
 		}
 	 
 	 public void addQuadri(Quadro a) {
-			Quadri.add(Quadro);
+			quadri.add(a);
 		}
 }
