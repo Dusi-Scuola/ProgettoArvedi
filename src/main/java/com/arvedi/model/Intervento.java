@@ -18,12 +18,12 @@ public class Intervento{
 	private Cabina cabinaSelezionata;
 	private String codiceIntervento;
 	private ArrayList<Tecnico> personale;
-	private LocalDateTime data;
+	private LocalDate data;
 	private String note;
 	private boolean esito;
 	private int priorita;
 	
-	public Intervento(Cabina cabinaSelezionata, String codiceIntervento, LocalDateTime data, String note, boolean esito, int priorita) {
+	public Intervento(Cabina cabinaSelezionata, String codiceIntervento, LocalDate data, String note, boolean esito, int priorita) {
         this.cabinaSelezionata = cabinaSelezionata;
         this.codiceIntervento = codiceIntervento;
         this.data = data;
@@ -49,11 +49,11 @@ public class Intervento{
 		this.note = note;
 	}
 	
-	public LocalDateTime getData() {
+	public LocalDate getData() {
 		return data;
 	}
  
-	public void setData(LocalDateTime data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 	
