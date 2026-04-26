@@ -12,5 +12,25 @@ package com.arvedi.model;
  *  It is completely independent.
  */
 public class Esterno extends Tecnico{
-
+	//DICHIARAZIONE ATTRIBUTI
+		private String azienda;
+	//COSTRUTTORE E METODI GETTER E SETTER
+		public Esterno(String azienda) {
+			super();
+			this.azienda = azienda;
+			}
+		
+		public String getAzienda() {
+			return azienda;
+		}
+		
+		public void setAzienda(String azienda) {
+			this.azienda = azienda;
+		}
+		
+	//TOSTRING
+			@Override
+			public String toString() {
+				return "Esterno [azienda=" + azienda + "]";
+				}
 }
