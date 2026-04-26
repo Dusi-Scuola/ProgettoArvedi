@@ -31,7 +31,7 @@ public class Quadro{
 		}
 
 		public String getCodiceQuadro() {
-			return CodiceQuadro;
+			return codiceQuadro;
 		}
 		
 		public void setCodiceQuadro(String codiceQuadro) {
@@ -41,4 +41,5 @@ public class Quadro{
 		@Override
 		public String toString() {
 			return "Quadro [tipologia=" + tipologia + ", codiceQuadro=" + codiceQuadro + "]";
+		}
 }
