@@ -15,11 +15,11 @@ public class Esterno extends Tecnico{
 	//DICHIARAZIONE ATTRIBUTI
 		private String azienda;
 	//COSTRUTTORE E METODI GETTER E SETTER
-		public Esterno(String azienda) {
-			super();
+		public Esterno(String cognome, String nome, String azienda) {
+			super(cognome, nome);
 			this.azienda = azienda;
-			}
-		
+	}
+
 		public String getAzienda() {
 			return azienda;
 		}
@@ -27,10 +27,10 @@ public class Esterno extends Tecnico{
 		public void setAzienda(String azienda) {
 			this.azienda = azienda;
 		}
-		
+
 	//TOSTRING
-			@Override
-			public String toString() {
-				return "Esterno [azienda=" + azienda + "]";
-				}
+		@Override
+		public String toString() {
+			return "Esterno [azienda=" + azienda + ", toString()=" + super.toString() + "]";
+		}
 }
