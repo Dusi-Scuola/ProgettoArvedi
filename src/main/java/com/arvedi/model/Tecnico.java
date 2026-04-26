@@ -12,5 +12,35 @@ package com.arvedi.model;
  *  It is completely independent.
  */
 public class Tecnico{
+	//DICHIARAZIONE ATTRIBUTI
+		private String cognome;
+		private String nome;
+		
+	//COSTRUTTORE E METODI GETTER E SETTER
+		public Tecnico(String cognome, String nome) {
+			this.cognome = Cognome;
+			this.nome = Nome;
+			}
+		
+		public String getCognome() {
+			return cognome;
+		}
+		
+		public void setCognome(String cognome) {
+			this.cognome = cognome;
+		}
 
+		public String getNome() {
+			return nome;
+		}
+		
+		public void setNome(String nome) {
+			this.nome = nome;
+		}
+	
+	 //TOSTRING
+		@Override
+		public String toString() {
+			return "Tecnico [cognome=" + cognome + ", nome=" + nome + "]";
+		}
 }
