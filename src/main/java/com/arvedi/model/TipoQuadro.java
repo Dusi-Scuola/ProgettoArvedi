@@ -36,6 +36,10 @@ public class TipoQuadro{
 
         public void setdescrizione(String descrizione) {
         	this.descrizione = descrizione;
-        }    
+        } 
+//TOSTRING       
+		@Override
+		public String toString() {
+			return "TipoQuadro [nome=" + nome + ", descrizione=" + descrizione + "]";
 }
 

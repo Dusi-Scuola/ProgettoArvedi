@@ -27,4 +27,8 @@ public class Controllo{
         public void setdescrizione(String descrizione) {
         	this.descrizione = descrizione;
         }
+//TOSTRING       
+      	@Override
+      	public String toString() {
+  			return "Controllo [descrizione=" + descrizione + "]";
 }

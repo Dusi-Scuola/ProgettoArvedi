@@ -29,4 +29,8 @@ public class Quadro{
 		public void setcodiceQuadro(String codiceQuadro) {
 			this.codiceQuadro = codiceQuadro;
 		}
+//TOSTRING		
+		@Override
+		public String toString() {
+			return "Quadro [tipologia=" + tipologia + ", codiceQuadro=" + codiceQuadro + "]";
 }
