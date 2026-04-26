@@ -20,11 +20,11 @@ public class Controllo{
         this.descrizione = descrizione;
         }
 
-        public String getdescrizione() {
+        public String getDescrizione() {
         	return descrizione;
         }
 
-        public void setdescrizione(String descrizione) {
+        public void setDescrizione(String descrizione) {
         	this.descrizione = descrizione;
         }
 //TOSTRING       

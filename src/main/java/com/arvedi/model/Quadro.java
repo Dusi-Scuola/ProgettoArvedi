@@ -22,11 +22,19 @@ public class Quadro{
 		this.codiceQuadro = codiceQuadro;
 		}
 
-		public String gettipologia() {
+		public String getTipologia() {
 			return tipologia;
 		}
+		
+		public void setTipologia(String tipologia) {
+			this.tipologia = tipologia;
+		}
 
-		public void setcodiceQuadro(String codiceQuadro) {
+		public String getCodiceQuadro() {
+			return CodiceQuadro;
+		}
+		
+		public void setCodiceQuadro(String codiceQuadro) {
 			this.codiceQuadro = codiceQuadro;
 		}
 //TOSTRING		
