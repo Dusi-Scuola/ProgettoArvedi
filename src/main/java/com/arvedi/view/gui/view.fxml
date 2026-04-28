@@ -4,41 +4,91 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<<<<<<< HEAD
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+=======
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.viewController">
+>>>>>>> branch 'main' of https://github.com/Dusi-Scuola/ProgettoArvedi
    <children>
-      <Label layoutX="23.0" layoutY="14.0" prefHeight="17.0" prefWidth="110.0" text="GENERA QUADRO" />
+      <Label layoutX="45.0" layoutY="14.0" prefHeight="17.0" prefWidth="110.0" text="GENERA QUADRO" />
       <TextField fx:id="txtTipoQuadro" layoutX="23.0" layoutY="45.0" promptText="Tipologia" />
       <TextField fx:id="txtCodiceQuadro" layoutX="23.0" layoutY="78.0" promptText="Codice" />
-      <Button fx:id="btnTecnicoEsterno" layoutX="35.0" layoutY="322.0" mnemonicParsing="false" onAction="#CreaQuandroEsterno" text="Crea Tecnico Esterno" />
-      <Label layoutX="249.0" layoutY="14.0" text="GENERA CABINA" />
-      <MenuButton layoutX="249.0" layoutY="45.0" mnemonicParsing="false" text="Quadri">
+      <Button fx:id="btnTecnicoEsterno" layoutX="35.0" layoutY="322.0" mnemonicParsing="false" onAction="#CreaEsterno" text="Crea Tecnico Esterno" />
+      <Label layoutX="279.0" layoutY="14.0" text="GENERA CABINA" />
+      <MenuButton fx:id="listQuadri" layoutX="250.0" layoutY="114.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Quadri">
         <items>
           <MenuItem mnemonicParsing="false" text="Action 1" />
           <MenuItem mnemonicParsing="false" text="Action 2" />
         </items>
       </MenuButton>
-      <TextField fx:id="txtCodiceCabina" layoutX="249.0" layoutY="78.0" promptText="Codice" />
-      <TextField fx:id="txtPosizione" layoutX="249.0" layoutY="113.0" promptText="Posizione" />
+      <TextField fx:id="txtCodiceCabina" layoutX="250.0" layoutY="45.0" promptText="Codice" />
+      <TextField fx:id="txtPosizione" layoutX="250.0" layoutY="78.0" promptText="Posizione" />
       <Label layoutX="448.0" layoutY="14.0" text="GENERA TECNICO INTERNO" />
       <Button fx:id="btnCabina" layoutX="284.0" layoutY="150.0" mnemonicParsing="false" onAction="#CreaCabina" text="Crea Cabina" />
       <TextField fx:id="txtNomeTecnico" layoutX="449.0" layoutY="45.0" promptText="Nome" />
       <TextField fx:id="txtCognomeTecnico" layoutX="449.0" layoutY="78.0" promptText="Cognome" />
-      <Button fx:id="btnTecnicoInterno" layoutX="461.0" layoutY="126.0" mnemonicParsing="false" onAction="#CreaTecnicoInterno" text="Crea Tecnico Interno" />
+      <Button fx:id="btnTecnicoInterno" layoutX="462.0" layoutY="114.0" mnemonicParsing="false" onAction="#CreaTecnicoInterno" text="Crea Tecnico Interno" />
       <Label layoutX="23.0" layoutY="192.0" text="GENERA TECNICO ESTERNO" />
       <TextField fx:id="txtNomeEsterno" layoutX="23.0" layoutY="217.0" promptText="Nome" />
       <TextField fx:id="txtCognomeEsterno" layoutX="23.0" layoutY="252.0" promptText="Cognome" />
       <TextField fx:id="txtAziendaEsterno" layoutX="23.0" layoutY="286.0" promptText="Azienda" />
-      <Button fx:id="btnQuadro" layoutX="58.0" layoutY="139.0" mnemonicParsing="false" onAction="#CreaQuadro" text="Crea Quadro" />
+      <Button fx:id="btnQuadro" layoutX="57.0" layoutY="114.0" mnemonicParsing="false" onAction="#CreaQuadro" text="Crea Quadro" />
       <Label layoutX="249.0" layoutY="192.0" text="GENERA TIPOLOGIA QUADRO" />
       <TextField fx:id="txtNomeTipo" layoutX="250.0" layoutY="217.0" promptText="Nome" />
       <TextField fx:id="txtDescrizioneTipo" layoutX="250.0" layoutY="252.0" prefHeight="62.0" prefWidth="149.0" promptText="Descrizione" />
-      <Button fx:id="btnTecnicoEsterno1" layoutX="256.0" layoutY="322.0" mnemonicParsing="false" onAction="#CreaQuandroEsterno" text="Crea Tipologia Quadro" />
+      <Button fx:id="btnTipologiaQuadro" layoutX="256.0" layoutY="322.0" mnemonicParsing="false" onAction="#CreaTipoQuadro" text="Crea Tipologia Quadro" />
       <Label layoutX="460.0" layoutY="192.0" prefHeight="17.0" prefWidth="126.0" text="GENERA CONTROLLO" />
       <TextField fx:id="txtDescrizioneControllo" layoutX="450.0" layoutY="252.0" prefHeight="62.0" prefWidth="149.0" promptText="Descrizione" />
       <TextField fx:id="txtNomeControllo" layoutX="449.0" layoutY="217.0" promptText="Nome" />
       <Button fx:id="btnControllo" layoutX="477.0" layoutY="322.0" mnemonicParsing="false" onAction="#CreaControllo" text="Crea Controllo" />
+      <Label layoutX="649.0" layoutY="14.0" text="GENERA INTERVENTO" />
+      <TextField fx:id="txtPriorita" layoutX="634.0" layoutY="45.0" promptText="Priorità (valore numerico)" />
+      <TextField fx:id="txtCodiceIntervento" layoutX="634.0" layoutY="78.0" promptText="Codice" />
+      <TextField fx:id="txtNote" layoutX="634.0" layoutY="108.0" prefHeight="62.0" prefWidth="149.0" promptText="Note dell'intervento" />
+      <MenuButton fx:id="listCabina" layoutX="634.0" layoutY="180.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Cabina">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Action 1" />
+            <MenuItem mnemonicParsing="false" text="Action 2" />
+         </items>
+      </MenuButton>
+      <MenuButton fx:id="listPersonale" layoutX="634.0" layoutY="217.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Personale">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Action 1" />
+            <MenuItem mnemonicParsing="false" text="Action 2" />
+         </items>
+      </MenuButton>
+      <RadioButton fx:id="radPositivo" layoutX="634.0" layoutY="256.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="149.0" text="Esito positivo">
+         <toggleGroup>
+            <ToggleGroup fx:id="esito" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="radNegativo" layoutX="634.0" layoutY="278.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="149.0" selected="true" text="Esito negativo" toggleGroup="$esito" />
+      <Button fx:id="btnIntervento" layoutX="659.0" layoutY="310.0" mnemonicParsing="false" onAction="#CreaIntervento" text="Crea Intervento" />
+      <Label layoutX="35.0" layoutY="379.0" prefHeight="17.0" prefWidth="126.0" text="VISUALIZZA QUADRO" />
+      <TextField fx:id="txtVisualizzaQuadro" editable="false" layoutX="19.0" layoutY="410.0" prefHeight="120.0" prefWidth="149.0" />
+      <Button fx:id="btnVisualizzaEsterno" layoutX="24.0" layoutY="743.0" mnemonicParsing="false" onAction="#VisualizzaEsterno" prefHeight="25.0" prefWidth="150.0" text="Visualizza Tecnico Esterno" />
+      <Label layoutX="266.0" layoutY="379.0" text="VISUALIZZA CABINA" />
+      <TextField fx:id="txtVisualizzaCabina" editable="false" layoutX="246.0" layoutY="410.0" prefHeight="120.0" prefWidth="149.0" />
+      <Label layoutX="435.0" layoutY="379.0" text="VISUALIZZA TECNICO INTERNO" />
+      <Button fx:id="btnVisualizzaCabina" layoutX="246.0" layoutY="545.0" mnemonicParsing="false" onAction="#VisualizzaCabina" prefHeight="25.0" prefWidth="149.0" text="Visualizza Cabina" />
+      <TextField fx:id="txtVisualizzaTecnico" editable="false" layoutX="445.0" layoutY="410.0" prefHeight="120.0" prefWidth="149.0" />
+      <Button fx:id="btnVisualizzaTecnico" layoutX="446.0" layoutY="545.0" mnemonicParsing="false" onAction="#VisualizzaTecnico" prefHeight="25.0" prefWidth="149.0" text="Visualizza Tecnico Interno" />
+      <Label layoutX="9.0" layoutY="586.0" text="VISUALIZZA TECNICO ESTERNO" />
+      <TextField fx:id="txtVisualizzaEsterno" editable="false" layoutX="23.0" layoutY="607.0" prefHeight="120.0" prefWidth="149.0" />
+      <Button fx:id="btnVisualizzaQuadro" layoutX="17.0" layoutY="545.0" mnemonicParsing="false" onAction="#VisualizzaQuadro" prefHeight="25.0" prefWidth="149.0" text="Visualizza Quadro" />
+      <Label layoutX="231.0" layoutY="586.0" text="VISUALIZZA TIPOLOGIA QUADRO" />
+      <TextField fx:id="txtVisualizzaTipoQuadro" editable="false" layoutX="246.0" layoutY="607.0" prefHeight="120.0" prefWidth="149.0" />
+      <Button fx:id="btnVisualizzaTipoQuadro" layoutX="244.0" layoutY="743.0" mnemonicParsing="false" onAction="#VisualizzaTipoQuadro" prefHeight="25.0" prefWidth="149.0" text="Visualizza Tipologia Quadro" />
+      <Label layoutX="451.0" layoutY="586.0" prefHeight="17.0" prefWidth="137.0" text="VISUALIZZA CONTROLLO" />
+      <Button fx:id="btnVisualizzaControllo" layoutX="445.0" layoutY="743.0" mnemonicParsing="false" onAction="#VisualizzaControllo" prefHeight="25.0" prefWidth="149.0" text="Visualizza Controllo" />
+      <Label layoutX="636.0" layoutY="379.0" text="VISUALIZZA INTERVENTO" />
+      <TextField fx:id="txtVisualizzaIntervento" editable="false" layoutX="630.0" layoutY="410.0" prefHeight="315.0" prefWidth="149.0" />
+      <Button fx:id="btnVisualizzaIntervento" layoutX="630.0" layoutY="743.0" mnemonicParsing="false" onAction="#VisualizzaIntervento" prefHeight="25.0" prefWidth="149.0" text="Visualizza Intervento" />
+      <TextField fx:id="txtVisualizzaControllo" editable="false" layoutX="445.0" layoutY="607.0" prefHeight="120.0" prefWidth="149.0" />
    </children>
 </AnchorPane>
