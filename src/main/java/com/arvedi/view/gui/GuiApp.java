@@ -46,12 +46,12 @@ public class GuiApp extends Application {
         /**
          * Provide controllers to JavaFX.
          *
-         * If the requested controller is GuiController,
+         * If the requested controller is viewController,
          * we give it an AppController created using the provider.
          */
         loader.setControllerFactory(cls -> {
-            if (cls == GuiController.class) {
-                return new GuiController(controllerProvider.get());
+            if (cls == viewController.class) {
+                return new viewController(controllerProvider.get());
             }
             try {
                 // For any other JavaFX controller
@@ -72,7 +72,7 @@ public class GuiApp extends Application {
         );
 
         // Set up the main window
-        stage.setTitle("Counter - JavaFX");
+        stage.setTitle("Arvedi - JavaFX");
         stage.setScene(scene);
         stage.show();
     }

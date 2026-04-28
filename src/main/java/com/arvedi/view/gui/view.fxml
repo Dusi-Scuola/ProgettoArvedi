@@ -9,11 +9,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<<<<<<< HEAD
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-=======
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.viewController">
->>>>>>> branch 'main' of https://github.com/Dusi-Scuola/ProgettoArvedi
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.viewController">
    <children>
       <Label layoutX="45.0" layoutY="14.0" prefHeight="17.0" prefWidth="110.0" text="GENERA QUADRO" />
       <TextField fx:id="txtTipoQuadro" layoutX="23.0" layoutY="45.0" promptText="Tipologia" />
@@ -70,25 +66,67 @@
       <RadioButton fx:id="radNegativo" layoutX="634.0" layoutY="278.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="149.0" selected="true" text="Esito negativo" toggleGroup="$esito" />
       <Button fx:id="btnIntervento" layoutX="659.0" layoutY="310.0" mnemonicParsing="false" onAction="#CreaIntervento" text="Crea Intervento" />
       <Label layoutX="35.0" layoutY="379.0" prefHeight="17.0" prefWidth="126.0" text="VISUALIZZA QUADRO" />
-      <TextField fx:id="txtVisualizzaQuadro" editable="false" layoutX="19.0" layoutY="410.0" prefHeight="120.0" prefWidth="149.0" />
-      <Button fx:id="btnVisualizzaEsterno" layoutX="24.0" layoutY="743.0" mnemonicParsing="false" onAction="#VisualizzaEsterno" prefHeight="25.0" prefWidth="150.0" text="Visualizza Tecnico Esterno" />
+      <TextField fx:id="txtVisualizzaQuadro" editable="false" layoutX="19.0" layoutY="430.0" prefHeight="100.0" prefWidth="149.0" />
+      <Button fx:id="btnVisualizzaEsterno" layoutX="25.0" layoutY="756.0" mnemonicParsing="false" onAction="#VisualizzaEsterno" prefHeight="25.0" prefWidth="150.0" text="Visualizza Tecnico Esterno" />
       <Label layoutX="266.0" layoutY="379.0" text="VISUALIZZA CABINA" />
-      <TextField fx:id="txtVisualizzaCabina" editable="false" layoutX="246.0" layoutY="410.0" prefHeight="120.0" prefWidth="149.0" />
+      <TextField fx:id="txtVisualizzaCabina" editable="false" layoutX="246.0" layoutY="430.0" prefHeight="100.0" prefWidth="149.0" />
       <Label layoutX="435.0" layoutY="379.0" text="VISUALIZZA TECNICO INTERNO" />
       <Button fx:id="btnVisualizzaCabina" layoutX="246.0" layoutY="545.0" mnemonicParsing="false" onAction="#VisualizzaCabina" prefHeight="25.0" prefWidth="149.0" text="Visualizza Cabina" />
-      <TextField fx:id="txtVisualizzaTecnico" editable="false" layoutX="445.0" layoutY="410.0" prefHeight="120.0" prefWidth="149.0" />
+      <TextField fx:id="txtVisualizzaTecnico" editable="false" layoutX="445.0" layoutY="430.0" prefHeight="100.0" prefWidth="149.0" />
       <Button fx:id="btnVisualizzaTecnico" layoutX="446.0" layoutY="545.0" mnemonicParsing="false" onAction="#VisualizzaTecnico" prefHeight="25.0" prefWidth="149.0" text="Visualizza Tecnico Interno" />
-      <Label layoutX="9.0" layoutY="586.0" text="VISUALIZZA TECNICO ESTERNO" />
-      <TextField fx:id="txtVisualizzaEsterno" editable="false" layoutX="23.0" layoutY="607.0" prefHeight="120.0" prefWidth="149.0" />
+      <Label layoutX="16.0" layoutY="586.0" text="VISUALIZZA TECNICO ESTERNO" />
+      <TextField fx:id="txtVisualizzaEsterno" editable="false" layoutX="24.0" layoutY="643.0" prefHeight="100.0" prefWidth="149.0" />
       <Button fx:id="btnVisualizzaQuadro" layoutX="17.0" layoutY="545.0" mnemonicParsing="false" onAction="#VisualizzaQuadro" prefHeight="25.0" prefWidth="149.0" text="Visualizza Quadro" />
       <Label layoutX="231.0" layoutY="586.0" text="VISUALIZZA TIPOLOGIA QUADRO" />
-      <TextField fx:id="txtVisualizzaTipoQuadro" editable="false" layoutX="246.0" layoutY="607.0" prefHeight="120.0" prefWidth="149.0" />
-      <Button fx:id="btnVisualizzaTipoQuadro" layoutX="244.0" layoutY="743.0" mnemonicParsing="false" onAction="#VisualizzaTipoQuadro" prefHeight="25.0" prefWidth="149.0" text="Visualizza Tipologia Quadro" />
+      <TextField fx:id="txtVisualizzaTipoQuadro" editable="false" layoutX="246.0" layoutY="643.0" prefHeight="100.0" prefWidth="149.0" />
+      <Button fx:id="btnVisualizzaTipoQuadro" layoutX="244.0" layoutY="756.0" mnemonicParsing="false" onAction="#VisualizzaTipoQuadro" prefHeight="25.0" prefWidth="149.0" text="Visualizza Tipologia Quadro" />
       <Label layoutX="451.0" layoutY="586.0" prefHeight="17.0" prefWidth="137.0" text="VISUALIZZA CONTROLLO" />
-      <Button fx:id="btnVisualizzaControllo" layoutX="445.0" layoutY="743.0" mnemonicParsing="false" onAction="#VisualizzaControllo" prefHeight="25.0" prefWidth="149.0" text="Visualizza Controllo" />
+      <Button fx:id="btnVisualizzaControllo" layoutX="445.0" layoutY="756.0" mnemonicParsing="false" onAction="#VisualizzaControllo" prefHeight="25.0" prefWidth="149.0" text="Visualizza Controllo" />
       <Label layoutX="636.0" layoutY="379.0" text="VISUALIZZA INTERVENTO" />
-      <TextField fx:id="txtVisualizzaIntervento" editable="false" layoutX="630.0" layoutY="410.0" prefHeight="315.0" prefWidth="149.0" />
+      <TextField fx:id="txtVisualizzaIntervento" editable="false" layoutX="630.0" layoutY="431.0" prefHeight="294.0" prefWidth="149.0" />
       <Button fx:id="btnVisualizzaIntervento" layoutX="630.0" layoutY="743.0" mnemonicParsing="false" onAction="#VisualizzaIntervento" prefHeight="25.0" prefWidth="149.0" text="Visualizza Intervento" />
-      <TextField fx:id="txtVisualizzaControllo" editable="false" layoutX="445.0" layoutY="607.0" prefHeight="120.0" prefWidth="149.0" />
+      <TextField fx:id="txtVisualizzaControllo" editable="false" layoutX="445.0" layoutY="643.0" prefHeight="100.0" prefWidth="149.0" />
+      <MenuButton fx:id="listQuadri1" layoutX="17.0" layoutY="398.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Quadri">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Action 1" />
+            <MenuItem mnemonicParsing="false" text="Action 2" />
+         </items>
+      </MenuButton>
+      <MenuButton fx:id="listCabine1" layoutX="244.0" layoutY="398.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Cabine">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Action 1" />
+            <MenuItem mnemonicParsing="false" text="Action 2" />
+         </items>
+      </MenuButton>
+      <MenuButton fx:id="listTecnici" layoutX="445.0" layoutY="398.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Tecnico Interno">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Action 1" />
+            <MenuItem mnemonicParsing="false" text="Action 2" />
+         </items>
+      </MenuButton>
+      <MenuButton fx:id="listEsterni" layoutX="26.0" layoutY="609.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Tecnico Esterno">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Action 1" />
+            <MenuItem mnemonicParsing="false" text="Action 2" />
+         </items>
+      </MenuButton>
+      <MenuButton fx:id="listTipoQuadri" layoutX="244.0" layoutY="609.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Tipologia Quadri">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Action 1" />
+            <MenuItem mnemonicParsing="false" text="Action 2" />
+         </items>
+      </MenuButton>
+      <MenuButton fx:id="listControlli" layoutX="445.0" layoutY="609.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Controlli">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Action 1" />
+            <MenuItem mnemonicParsing="false" text="Action 2" />
+         </items>
+      </MenuButton>
+      <MenuButton fx:id="listInterventi" layoutX="630.0" layoutY="398.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Interventi">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Action 1" />
+            <MenuItem mnemonicParsing="false" text="Action 2" />
+         </items>
+      </MenuButton>
    </children>
 </AnchorPane>
