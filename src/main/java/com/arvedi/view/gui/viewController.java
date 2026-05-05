@@ -173,7 +173,14 @@ public class viewController {
 
     @FXML
     void CreaCabina(ActionEvent event) {
+    	if (quadroSelezionato == null) {
+            System.out.println("Errore: devi prima selezionare un quadro dal menu!");
+            return;
+        }
 
+        String codiceCabina = txtCodiceCabina.getText();
+        // Ora puoi usare quadroSelezionato per creare la tua Cabina
+        Cabina nuovaCabina = new Cabina(codiceCabina, quadroSelezionato);
     }
 
     @FXML
@@ -240,6 +247,39 @@ public class viewController {
     void VisualizzaTipoQuadro(ActionEvent event) {
 
     }
+    
+    private Quadro quadroSelezionato;
+    
+
+    public void aggiornaMenuQuadri(List<Quadro> quadri) {
+    	public void aggiornaMenuQuadri(List<Quadro> listaQuadriEsistenti) {
+    	    // 1. Puliamo il menu dalle voci vecchie (o dai "Action 1" di default)
+    	    listQuadri.getItems().clear();
+
+    	    // 2. Cicliamo i tuoi oggetti
+    	    for (Quadro q : listaQuadriEsistenti) {
+    	        
+    	        // Creiamo una voce di menu con il testo dell'oggetto (es. il codice)
+    	        MenuItem voce = new MenuItem(q.getCodice());
+
+    	        // Definiamo cosa succede quando l'utente clicca quella voce
+    	        voce.setOnAction(event -> {
+    	            // Aggiorniamo il testo del bottone per mostrare cosa è stato scelto
+    	            listQuadri.setText("Selezionato: " + q.getCodice());
+    	            
+    	            // Salviamo l'oggetto scelto nella nostra variabile di appoggio
+    	            this.quadroSelezionato = q;
+    	            
+    	            System.out.println("Hai scelto il quadro: " + q.getCodice());
+    	        });
+
+    	        // 3. Aggiungiamo la voce al MenuButton
+    	        listQuadri.getItems().add(voce);
+    	    }
+    	}
+
+    }
+
 
     @FXML
     void initialize() {
