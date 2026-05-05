@@ -23,7 +23,7 @@ public class Intervento{
 	private boolean esito;
 	private int priorita;
 	
-	public Intervento(Cabina cabinaSelezionata, String codiceIntervento, ArrayList<Quadro> personale, LocalDate data,
+	public Intervento(Cabina cabinaSelezionata, String codiceIntervento, ArrayList<Tecnico> personale, LocalDate data,
 			String note, boolean esito, int priorita) {
 		this.cabinaSelezionata = cabinaSelezionata;
 		this.codiceIntervento = codiceIntervento;
@@ -50,11 +50,11 @@ public class Intervento{
 		this.codiceIntervento = codiceIntervento;
 	}
 
-	public ArrayList<Quadro> getPersonale() {
+	public ArrayList<Tecnico> getPersonale() {
 		return personale;
 	}
 
-	public void setPersonale(ArrayList<Quadro> personale) {
+	public void setPersonale(ArrayList<Tecnico> personale) {
 		this.personale = personale;
 	}
 

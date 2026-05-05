@@ -41,5 +41,5 @@ public class TipoQuadro{
 		@Override
 		public String toString() {
 			return "TipoQuadro [nome=" + nome + ", descrizione=" + descrizione + "]";
+		}
 }
-

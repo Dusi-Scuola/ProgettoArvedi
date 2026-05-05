@@ -14,7 +14,7 @@ import com.arvedi.model.Counter;
  *  The View must NEVER modify the Model directly.
  *  All interactions with the Model go through the Controller.
  */
-public class AppController {
+public class AppController1 {
 
     // Reference to the Model (Counter)
     private final Counter counter;
@@ -23,7 +23,7 @@ public class AppController {
      * The Controller receives an instance of the Model.
      * This allows different Controllers to use different Models if needed.
      */
-    public AppController(Counter counter) {
+    public AppController1(Counter counter) {
         this.counter = counter;
     }
 

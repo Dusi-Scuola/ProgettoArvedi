@@ -1,9 +1,12 @@
 package com.arvedi.view.gui;
 
 import com.arvedi.controller.AppController;
+import com.arvedi.model.Quadro;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -179,8 +182,10 @@ public class viewController {
         }
 
         String codiceCabina = txtCodiceCabina.getText();
+        String posizione = txtPosizione.getText();
+        Quadro quadro =
         // Ora puoi usare quadroSelezionato per creare la tua Cabina
-        Cabina nuovaCabina = new Cabina(codiceCabina, quadroSelezionato);
+        Cabina nuovaCabina = new Cabina(codiceCabina, quadro, posizione);
     }
 
     @FXML
@@ -264,7 +269,7 @@ public class viewController {
 
     	        // Definiamo cosa succede quando l'utente clicca quella voce
     	        voce.setOnAction(event -> {
-    	            // Aggiorniamo il testo del bottone per mostrare cosa è stato scelto
+    	            // Aggiorniamo il testo del bottone per mostrare cosa ï¿½ stato scelto
     	            listQuadri.setText("Selezionato: " + q.getCodice());
     	            
     	            // Salviamo l'oggetto scelto nella nostra variabile di appoggio

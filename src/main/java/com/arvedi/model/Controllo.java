@@ -31,4 +31,6 @@ public class Controllo{
       	@Override
       	public String toString() {
   			return "Controllo [descrizione=" + descrizione + "]";
+
+      	}
 }

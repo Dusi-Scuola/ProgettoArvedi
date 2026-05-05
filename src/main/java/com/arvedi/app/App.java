@@ -29,9 +29,9 @@ public class App {
 
         // Switch expression (Java 14+)
         switch (mode) {
-            case "cli" -> runCli();  // Start Command Line Interface
-            case "gui" -> runGui();  // Start Graphical Interface
-            default    -> showMenu(); // Ask the user (1 or 2)
+            case "cli": runCli();  // Start Command Line Interface
+            case "gui": runGui();  // Start Graphical Interface
+            default: showMenu(); // Ask the user (1 or 2)
         }
     }
 
