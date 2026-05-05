@@ -1,11 +1,8 @@
 package com.arvedi.view.gui;
+
 import com.arvedi.controller.AppController;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
-package application;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -17,9 +14,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
 public class viewController {
-	
-	// MVC Controller (logic + model)
-    private final AppController controller;
 
     @FXML
     private ResourceBundle resources;
@@ -182,41 +176,123 @@ public class viewController {
 
     }
 
-    /** The constructor receives the AppController */
-    public GuiController(AppController controller) {
-        this.controller = controller;
-    }
-
-    /**
-     * This method is called automatically by JavaFX
-     * after the FXML file has been loaded.
-     *
-     * Here we:
-     *  - initialize the GUI
-     *  - connect buttons to actions
-     */
     @FXML
-    public void initialize() {
-        refresh();
+    void CreaControllo(ActionEvent event) {
 
-        btnInc.setOnAction(e -> {
-            controller.increment();
-            refresh();
-        });
-
-        btnDec.setOnAction(e -> {
-            controller.decrement();
-            refresh();
-        });
-
-        btnReset.setOnAction(e -> {
-            controller.reset();
-            refresh();
-        });
     }
 
-    /** Updates the label showing the counter value */
-    private void refresh() {
-        lblCount.setText(Integer.toString(controller.getCount()));
+    @FXML
+    void CreaEsterno(ActionEvent event) {
+
+    }
+
+    @FXML
+    void CreaIntervento(ActionEvent event) {
+
+    }
+
+    @FXML
+    void CreaQuadro(ActionEvent event) {
+
+    }
+
+    @FXML
+    void CreaTecnicoInterno(ActionEvent event) {
+
+    }
+
+    @FXML
+    void CreaTipoQuadro(ActionEvent event) {
+
+    }
+
+    @FXML
+    void VisualizzaCabina(ActionEvent event) {
+
+    }
+
+    @FXML
+    void VisualizzaControllo(ActionEvent event) {
+
+    }
+
+    @FXML
+    void VisualizzaEsterno(ActionEvent event) {
+
+    }
+
+    @FXML
+    void VisualizzaIntervento(ActionEvent event) {
+
+    }
+
+    @FXML
+    void VisualizzaQuadro(ActionEvent event) {
+
+    }
+
+    @FXML
+    void VisualizzaTecnico(ActionEvent event) {
+
+    }
+
+    @FXML
+    void VisualizzaTipoQuadro(ActionEvent event) {
+
+    }
+
+    @FXML
+    void initialize() {
+        assert txtTipoQuadro != null : "fx:id=\"txtTipoQuadro\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtCodiceQuadro != null : "fx:id=\"txtCodiceQuadro\" was not injected: check your FXML file 'view.fxml'.";
+        assert btnTecnicoEsterno != null : "fx:id=\"btnTecnicoEsterno\" was not injected: check your FXML file 'view.fxml'.";
+        assert listQuadri != null : "fx:id=\"listQuadri\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtCodiceCabina != null : "fx:id=\"txtCodiceCabina\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtPosizione != null : "fx:id=\"txtPosizione\" was not injected: check your FXML file 'view.fxml'.";
+        assert btnCabina != null : "fx:id=\"btnCabina\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtNomeTecnico != null : "fx:id=\"txtNomeTecnico\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtCognomeTecnico != null : "fx:id=\"txtCognomeTecnico\" was not injected: check your FXML file 'view.fxml'.";
+        assert btnTecnicoInterno != null : "fx:id=\"btnTecnicoInterno\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtNomeEsterno != null : "fx:id=\"txtNomeEsterno\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtCognomeEsterno != null : "fx:id=\"txtCognomeEsterno\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtAziendaEsterno != null : "fx:id=\"txtAziendaEsterno\" was not injected: check your FXML file 'view.fxml'.";
+        assert btnQuadro != null : "fx:id=\"btnQuadro\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtNomeTipo != null : "fx:id=\"txtNomeTipo\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtDescrizioneTipo != null : "fx:id=\"txtDescrizioneTipo\" was not injected: check your FXML file 'view.fxml'.";
+        assert btnTipologiaQuadro != null : "fx:id=\"btnTipologiaQuadro\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtDescrizioneControllo != null : "fx:id=\"txtDescrizioneControllo\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtNomeControllo != null : "fx:id=\"txtNomeControllo\" was not injected: check your FXML file 'view.fxml'.";
+        assert btnControllo != null : "fx:id=\"btnControllo\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtPriorita != null : "fx:id=\"txtPriorita\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtCodiceIntervento != null : "fx:id=\"txtCodiceIntervento\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtNote != null : "fx:id=\"txtNote\" was not injected: check your FXML file 'view.fxml'.";
+        assert listCabina != null : "fx:id=\"listCabina\" was not injected: check your FXML file 'view.fxml'.";
+        assert listPersonale != null : "fx:id=\"listPersonale\" was not injected: check your FXML file 'view.fxml'.";
+        assert radPositivo != null : "fx:id=\"radPositivo\" was not injected: check your FXML file 'view.fxml'.";
+        assert esito != null : "fx:id=\"esito\" was not injected: check your FXML file 'view.fxml'.";
+        assert radNegativo != null : "fx:id=\"radNegativo\" was not injected: check your FXML file 'view.fxml'.";
+        assert btnIntervento != null : "fx:id=\"btnIntervento\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtVisualizzaQuadro != null : "fx:id=\"txtVisualizzaQuadro\" was not injected: check your FXML file 'view.fxml'.";
+        assert btnVisualizzaEsterno != null : "fx:id=\"btnVisualizzaEsterno\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtVisualizzaCabina != null : "fx:id=\"txtVisualizzaCabina\" was not injected: check your FXML file 'view.fxml'.";
+        assert btnVisualizzaCabina != null : "fx:id=\"btnVisualizzaCabina\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtVisualizzaTecnico != null : "fx:id=\"txtVisualizzaTecnico\" was not injected: check your FXML file 'view.fxml'.";
+        assert btnVisualizzaTecnico != null : "fx:id=\"btnVisualizzaTecnico\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtVisualizzaEsterno != null : "fx:id=\"txtVisualizzaEsterno\" was not injected: check your FXML file 'view.fxml'.";
+        assert btnVisualizzaQuadro != null : "fx:id=\"btnVisualizzaQuadro\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtVisualizzaTipoQuadro != null : "fx:id=\"txtVisualizzaTipoQuadro\" was not injected: check your FXML file 'view.fxml'.";
+        assert btnVisualizzaTipoQuadro != null : "fx:id=\"btnVisualizzaTipoQuadro\" was not injected: check your FXML file 'view.fxml'.";
+        assert btnVisualizzaControllo != null : "fx:id=\"btnVisualizzaControllo\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtVisualizzaIntervento != null : "fx:id=\"txtVisualizzaIntervento\" was not injected: check your FXML file 'view.fxml'.";
+        assert btnVisualizzaIntervento != null : "fx:id=\"btnVisualizzaIntervento\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtVisualizzaControllo != null : "fx:id=\"txtVisualizzaControllo\" was not injected: check your FXML file 'view.fxml'.";
+        assert listQuadri1 != null : "fx:id=\"listQuadri1\" was not injected: check your FXML file 'view.fxml'.";
+        assert listCabine1 != null : "fx:id=\"listCabine1\" was not injected: check your FXML file 'view.fxml'.";
+        assert listTecnici != null : "fx:id=\"listTecnici\" was not injected: check your FXML file 'view.fxml'.";
+        assert listEsterni != null : "fx:id=\"listEsterni\" was not injected: check your FXML file 'view.fxml'.";
+        assert listTipoQuadri != null : "fx:id=\"listTipoQuadri\" was not injected: check your FXML file 'view.fxml'.";
+        assert listControlli != null : "fx:id=\"listControlli\" was not injected: check your FXML file 'view.fxml'.";
+        assert listInterventi != null : "fx:id=\"listInterventi\" was not injected: check your FXML file 'view.fxml'.";
+
     }
 }
