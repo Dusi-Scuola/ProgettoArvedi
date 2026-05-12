@@ -38,6 +38,11 @@ public class Tecnico{
 			this.nome = nome;
 		}
 	
+		public void licenziaTecnico() {
+			nome=null;
+			cognome=null;
+		}
+		
 	 //TOSTRING
 		@Override
 		public String toString() {

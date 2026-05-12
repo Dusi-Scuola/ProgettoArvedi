@@ -1,6 +1,14 @@
 package com.arvedi.controller;
 
-import com.arvedi.model.Counter;
+import com.arvedi.model.Cabina;
+import com.arvedi.model.Controllo;
+import com.arvedi.model.Esterno;
+import com.arvedi.model.Intervento;
+import com.arvedi.model.Quadro;
+import com.arvedi.model.Tecnico;
+import com.arvedi.model.TipoQuadro;
+import java.util.ArrayList;
+
 
 /**
  * This class is the CONTROLLER in the MVC architecture.
@@ -20,7 +28,7 @@ public class AppController {
         private final Controllo controllo;
         private final Esterno esterno;
         private final Intervento intervento;
-        private final Cabina cabina;
+        private final Quadro quadro;
         private final Tecnico tecnico;
         private final TipoQuadro tipoquadro;
         
@@ -45,13 +53,13 @@ public class AppController {
             return cabina.getPosizione();
         }
 
-        public ArrayList<Quadro> getQuadri(cabina) {
+        public ArrayList<Quadro> getQuadriCabina() {
             return cabina.getQuadri();
         }
         
     //CLASSE CONTROLLO
 
-        public String getDescrizione() {
+        public String getDescrizioneControllo() {
             return controllo.getDescrizione();
         }
     
@@ -61,7 +69,10 @@ public class AppController {
         public String getAzienda() {
             return esterno.getAzienda();
         }
-    
+        
+        public void licenziaEst() {
+        	esterno.licenziaEsterno();
+        }
         
      //CLASSE INTERVENTO
 
@@ -73,8 +84,8 @@ public class AppController {
             return intervento.getCodiceIntervento();
         }
 
-        public ArrayList<Tecnico> getQuadri(cabina) {
-            return intervento.getQuadri();
+        public ArrayList<Tecnico> getPersonaleIntervento() {
+            return intervento.getPersonale();
         }
         
         
@@ -91,19 +102,23 @@ public class AppController {
         
     //CLASSE TECNICO
 
-        public String getCognomeT() {
-            return tecnico.getCognomeT();
+        public String getCognomeTecnico() {
+            return tecnico.getCognome();
         }
 
-        public String getNomeT() {
-            return tecnico.getNomeT();
+        public String getNomeTecnico() {
+            return tecnico.getNome();
+        }
+        
+        public void licenziaInt() {
+        	tecnico.licenziaTecnico();
         }
         
         
      //CLASSE TIPOQUADRO
 
         public String getNomeTQ() {
-            return tipoquadro.getNomeTQ();
+            return tipoquadro.getNome();
         }
 
         public String getDescrizione() {

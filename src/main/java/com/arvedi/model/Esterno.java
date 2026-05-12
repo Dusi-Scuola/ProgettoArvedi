@@ -27,7 +27,11 @@ public class Esterno extends Tecnico{
 		public void setAzienda(String azienda) {
 			this.azienda = azienda;
 		}
-
+		
+		public void licenziaEsterno() {
+			licenziaTecnico();
+			azienda=null;
+		}
 	//TOSTRING
 		@Override
 		public String toString() {

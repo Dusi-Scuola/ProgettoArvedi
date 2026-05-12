@@ -9,7 +9,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioButton;
@@ -17,6 +16,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
 public class viewController {
+	
+	private final AppController controller;
+	
+	public viewController(AppController controller) {
+        this.controller = controller;
+    }
 
     @FXML
     private ResourceBundle resources;
