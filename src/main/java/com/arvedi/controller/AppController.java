@@ -16,36 +16,98 @@ import com.arvedi.model.Counter;
  */
 public class AppController {
 
-    // Reference to the Model (Counter)
-    private final Counter counter;
+        private final Cabina cabina;
+        private final Controllo controllo;
+        private final Esterno esterno;
+        private final Intervento intervento;
+        private final Cabina cabina;
+        private final Tecnico tecnico;
+        private final TipoQuadro tipoquadro;
+        
 
-    /**
-     * The Controller receives an instance of the Model.
-     * This allows different Controllers to use different Models if needed.
-     */
-    public AppController(Counter counter) {
-        this.counter = counter;
-    }
+        public AppController(Cabina cabina, Controllo controllo, Esterno esterno, Intervento intervento, Quadro quadro, Tecnico tecnico, TipoQuadro tipoquadro) {
+            this.cabina = cabina;
+            this.controllo = controllo;
+            this.esterno = esterno;
+            this.intervento = intervento;
+            this.quadro = quadro;
+            this.tecnico = tecnico;
+            this.tipoquadro = tipoquadro;
+        }
 
-    /** Returns the current counter value */
-    public int getCount() {
-        return counter.getValue();
-    }
+      //CLASSE CABINA
+        
+        public String getCodiceCabina() {
+            return cabina.getCodiceCabina();
+        }
 
-    /** Increases the counter by 1 and returns the new value */
-    public int increment() {
-        counter.increment();
-        return counter.getValue();
-    }
+        public String getPosizione() {
+            return cabina.getPosizione();
+        }
 
-    /** Decreases the counter by 1 and returns the new value */
-    public int decrement() {
-        counter.decrement();
-        return counter.getValue();
-    }
+        public ArrayList<Quadro> getQuadri(cabina) {
+            return cabina.getQuadri();
+        }
+        
+    //CLASSE CONTROLLO
 
-    /** Resets the counter to 0 */
-    public void reset() {
-        counter.reset();
-    }
+        public String getDescrizione() {
+            return controllo.getDescrizione();
+        }
+    
+        
+    //CLASSE ESTERNO
+        
+        public String getAzienda() {
+            return esterno.getAzienda();
+        }
+    
+        
+     //CLASSE INTERVENTO
+
+        public Cabina getCabinaSelezionata() {
+            return intervento.getCabinaSelezionata();
+        }
+
+        public String getCodiceIntervento() {
+            return intervento.getCodiceIntervento();
+        }
+
+        public ArrayList<Tecnico> getQuadri(cabina) {
+            return intervento.getQuadri();
+        }
+        
+        
+    //CLASSE QUADRO
+
+        public String getTipologia() {
+            return quadro.getTipologia();
+        }
+
+        public String getCodiceQuadro() {
+            return quadro.getCodiceQuadro();
+        }
+        
+        
+    //CLASSE TECNICO
+
+        public String getCognomeT() {
+            return tecnico.getCognomeT();
+        }
+
+        public String getNomeT() {
+            return tecnico.getNomeT();
+        }
+        
+        
+     //CLASSE TIPOQUADRO
+
+        public String getNomeTQ() {
+            return tipoquadro.getNomeTQ();
+        }
+
+        public String getDescrizione() {
+            return tipoquadro.getDescrizione();
+        }
+     
 }
