@@ -66,7 +66,11 @@ public class AppController {
         public String ControlloToString() {
         	return controllo.toString();
         }
-
+        
+        public String getNomeControllo() {
+            return controllo.getNome();
+        }
+        
         public String getDescrizioneControllo() {
             return controllo.getDescrizione();
         }

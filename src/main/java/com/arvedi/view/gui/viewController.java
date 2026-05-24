@@ -189,9 +189,20 @@ public class viewController {
     private MenuButton listInterventi;
     
     private ArrayList<Quadro> quadriSelezionabili = new ArrayList<>();
-    private ArrayList<CheckMenuItem> checkItemsQuadri = new ArrayList<>();
     private ArrayList<Cabina> cabineSelezionabili = new ArrayList<>();
+    private ArrayList<Controllo> controlliSelezionabili = new ArrayList<>();
+    private ArrayList<Intervento> interventoSelezionabili = new ArrayList<>();
+    private ArrayList<TipoQuadro> tipiquadriSelezionabili = new ArrayList<>();
+    private ArrayList<Tecnico> tecniciSelezionabili = new ArrayList<>();
+    private ArrayList<Esterno> esterniSelezionabili = new ArrayList<>();
+    
+    private ArrayList<CheckMenuItem> checkItemsQuadri = new ArrayList<>();
     private ArrayList<CheckMenuItem> checkItemsCabine = new ArrayList<>(); //intervento dovrà accertarsi che sia solo una selezionata
+    private ArrayList<CheckMenuItem> checkItemsControlli = new ArrayList<>();
+    private ArrayList<CheckMenuItem> checkItemsInterventi = new ArrayList<>();
+    private ArrayList<CheckMenuItem> checkItemsTipiQuadri = new ArrayList<>();
+    private ArrayList<CheckMenuItem> checkItemstecnici = new ArrayList<>();
+    private ArrayList<CheckMenuItem> checkItemsEsterni = new ArrayList<>();
     
     @FXML
     void CreaCabina(ActionEvent event) {
@@ -225,12 +236,32 @@ public class viewController {
 
     @FXML
     void CreaControllo(ActionEvent event) {
-
+    	if(txtNomeTipo.getText() != null && txtDescrizioneTipo.getText() != null) {
+    		String nome = txtNomeTipo.getText();
+    		String descrizione = txtDescrizioneTipo.getText();
+    		Controllo c = new Controllo(nome, descrizione);
+    		
+    		CheckMenuItem check = new CheckMenuItem(c.getNome());
+    		listControlli.getItems().add(check);
+    		checkItemsControlli.add(check);
+    		controlliSelezionabili.add(c);
+    	}
     }
 
     @FXML
     void CreaEsterno(ActionEvent event) {
-
+    	if(txtNomeEsterno.getText() != null && txtCognomeEsterno.getText() != null && txtAziendaEsterno.getText() != null) {
+    		String nome = txtNomeEsterno.getText();
+    		String cognome = txtCognomeEsterno.getText();
+    		String azienda = txtAziendaEsterno.getText();
+    		Esterno e = new Esterno(nome, cognome, azienda);
+    		
+    		CheckMenuItem check = new CheckMenuItem(e.getNome());
+    		listPersonale.getItems().add(check);
+    		listEsterni.getItems().add(check);
+    		checkItemsEsterni.add(check);
+    		esterniSelezionabili.add(e);
+    	}
     }
 
     @FXML
@@ -245,10 +276,9 @@ public class viewController {
     		String CQ = txtCodiceQuadro.getText();
     		Quadro q = new Quadro(TQ, CQ);
     		
-    		MenuItem item = new MenuItem(q.getCodiceQuadro());
-    		listQuadri1.getItems().add(item);
     		CheckMenuItem check = new CheckMenuItem(q.getCodiceQuadro());
     		listQuadri.getItems().add(check);
+    		listQuadri1.getItems().add(check);
     		checkItemsQuadri.add(check);
     		quadriSelezionabili.add(q);
     	}
@@ -256,7 +286,17 @@ public class viewController {
 
     @FXML
     void CreaTecnicoInterno(ActionEvent event) {
-
+    	if(txtNomeTecnico.getText() != null && txtCognomeTecnico.getText() != null) {
+    		String nome = txtNomeTecnico.getText();
+    		String cognome = txtCognomeTecnico.getText();
+    		Tecnico t = new Tecnico(nome, cognome);
+    		
+    		CheckMenuItem check = new CheckMenuItem(t.getNome());
+    		listPersonale.getItems().add(check);
+    		listTecnici.getItems().add(check);
+    		checkItemstecnici.add(check);
+    		tecniciSelezionabili.add(t);
+    	}
     }
 
     @FXML
@@ -286,7 +326,7 @@ public class viewController {
 
     @FXML
     void VisualizzaQuadro(ActionEvent event) {
-
+    	
     }
 
     @FXML

@@ -13,13 +13,23 @@ package com.arvedi.model;
  */
 public class Controllo{
 	 //DICHIARAZIONE ATTRIBUTI
+	private String nome;
     private String descrizione;
     
 //COSTRUTTORE E METODI GETTER E SETTER
-    public Controllo(String descrizione) {
+    public Controllo( String nome, String descrizione) {
+    	this.nome = nome;
         this.descrizione = descrizione;
         }
+    	
+    	public String getNome() {
+    		return nome;
+    	}
 
+    	public void setNome(String nome) {
+    		this.nome = nome;
+    	}
+    	
         public String getDescrizione() {
         	return descrizione;
         }
@@ -30,7 +40,7 @@ public class Controllo{
 //TOSTRING       
       	@Override
       	public String toString() {
-  			return "Controllo [descrizione=" + descrizione + "]";
+  			return "Controllo [nome=" + nome + " descrizione=" + descrizione + "]";
 
       	}
 }
