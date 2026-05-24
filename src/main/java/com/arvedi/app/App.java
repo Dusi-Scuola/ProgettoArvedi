@@ -10,6 +10,8 @@ import com.arvedi.model.Tecnico;
 import com.arvedi.model.TipoQuadro;
 import com.arvedi.view.gui.GuiApp;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -17,13 +19,13 @@ import java.util.Scanner;
  * This is the MAIN CLASS of the entire application.
  *
  * It acts as the LAUNCHER:
- *  - If the user passes "--cli" → it runs the text interface
- *  - If the user passes "--gui" → it runs the JavaFX graphical interface
- *  - If no arguments are given → it shows a small menu (1 or 2)
+ * - If the user passes "--cli" → it runs the text interface
+ * - If the user passes "--gui" → it runs the JavaFX graphical interface
+ * - If no arguments are given → it shows a small menu (1 or 2)
  *
  * IMPORTANT:
- *  App.java does NOT contain logic.
- *  It only decides WHICH interface to start.
+ * App.java does NOT contain logic.
+ * It only decides WHICH interface to start.
  */
 public class App {
 
@@ -32,10 +34,14 @@ public class App {
         // Determine which mode should be started: CLI, GUI, or the menu.
         String mode = parseMode(args);
 
-        // Switch expression (Java 14+)
+        // Switch on the selected mode
         switch (mode) {
-            case "gui": runGui();  // Start Graphical Interface
-            default: showMenu();
+            case "gui":
+                runGui();
+                break;
+            default:
+                showMenu();
+                break;
         }
     }
 
@@ -43,12 +49,12 @@ public class App {
      * Reads the command-line arguments (if any).
      *
      * If the user wrote something like:
-     *   java App --cli
-     *   java App run_gui please
+     * java App --cli
+     * java App run_gui please
      *
      * The method checks if the text contains:
-     *   "cli" → return "cli"
-     *   "gui" → return "gui"
+     * "cli" → return "cli"
+     * "gui" → return "gui"
      *
      * Otherwise → return "menu"
      */
@@ -61,15 +67,43 @@ public class App {
     }
 
     /**
-     * Creates a NEW MVC Controller with a NEW Model.
+     * Creates a NEW MVC Controller with NEW Model instances.
      *
      * This factory method ensures that each run
      * (CLI or GUI) receives its own independent instance.
+     *
+     * Sample data is provided so the app starts with
+     * meaningful objects already in place.
      */
     private static AppController newController() {
-        return new AppController(new Counter());
+        // Sample Quadro
+        Quadro quadro = new Quadro("Quadro MT", "Q001");
+
+        // Sample Cabina (contains a list of Quadro)
+        ArrayList<Quadro> quadri = new ArrayList<>();
+        quadri.add(quadro);
+        Cabina cabina = new Cabina("CAB001", "Zona Nord", quadri);
+
+        // Sample Controllo
+        Controllo controllo = new Controllo("Controllo periodico annuale");
+
+        // Sample Esterno (extends Tecnico)
+        Esterno esterno = new Esterno("Rossi", "Mario", "ElettroService Srl");
+
+        // Sample Tecnico
+        Tecnico tecnico = new Tecnico("Bianchi", "Luigi");
+
+        // Sample Intervento
+        ArrayList<Tecnico> personale = new ArrayList<>();
+        personale.add(tecnico);
+        personale.add(esterno);
+        Intervento intervento = new Intervento(cabina, "INT001", personale, LocalDate.now(), "Nessuna nota", true, 1);
+
+        // Sample TipoQuadro
+        TipoQuadro tipoquadro = new TipoQuadro("Media Tensione", "Quadro per linee MT");
+
+        return new AppController(cabina, controllo, esterno, intervento, quadro, tecnico, tipoquadro);
     }
-    
 
     /**
      * Starts the JavaFX GUI.
@@ -77,25 +111,36 @@ public class App {
      * GUI works differently: JavaFX itself creates objects,
      * so we give JavaFX a "Controller Provider":
      *
-     *   GuiApp.setControllerProvider(App::newController)
+     * GuiApp.setControllerProvider(App::newController)
      *
      * This tells JavaFX:
-     *   “When you need a GuiController, ask me for a new AppController”
+     * "When you need a GuiController, ask me for a new AppController"
      */
     private static void runGui() {
         GuiApp.setControllerProvider(App::newController);
-        GuiApp.launch(GuiApp.class);  // Start JavaFX application
+        GuiApp.launch(GuiApp.class); // Start JavaFX application
     }
 
     /**
      * If no arguments were provided, show a simple menu
      * so the user can choose:
      *
-     *   1 → CLI
-     *   2 → GUI
+     * 1 → CLI
+     * 2 → GUI
      */
     private static void showMenu() {
         System.out.println("=== Launcher ===");
-        runGui();
+        System.out.println("1 - CLI");
+        System.out.println("2 - GUI");
+        System.out.print("Scelta: ");
+
+        Scanner scanner = new Scanner(System.in);
+        String choice = scanner.nextLine().trim();
+
+        if (choice.equals("2")) {
+            runGui();
+        } else {
+            System.out.println("Modalità CLI non disponibile.");
+        }
     }
 }

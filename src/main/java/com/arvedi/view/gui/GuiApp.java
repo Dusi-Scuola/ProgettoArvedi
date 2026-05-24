@@ -40,7 +40,7 @@ public class GuiApp extends Application {
 
         // Load the FXML layout file
         FXMLLoader loader = new FXMLLoader(
-                Objects.requireNonNull(getClass().getResource("/view/gui/main.fxml"))
+                Objects.requireNonNull(getClass().getResource("/view/gui/view.fxml"))
         );
 
         /**
@@ -63,13 +63,6 @@ public class GuiApp extends Application {
 
         // Create the scene from the FXML
         Scene scene = new Scene(loader.load());
-
-        // Load and apply the stylesheet CSS
-        scene.getStylesheets().add(
-                Objects.requireNonNull(
-                    getClass().getResource("/view/gui/styles.css")
-                ).toExternalForm()
-        );
 
         // Set up the main window
         stage.setTitle("Arvedi - JavaFX");
