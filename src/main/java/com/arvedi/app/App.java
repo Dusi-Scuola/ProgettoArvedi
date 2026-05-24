@@ -1,8 +1,13 @@
 package com.arvedi.app;
 
 import com.arvedi.controller.AppController;
-import com.arvedi.model.Counter;
-import com.arvedi.view.cli.CliView;
+import com.arvedi.model.Cabina;
+import com.arvedi.model.Controllo;
+import com.arvedi.model.Esterno;
+import com.arvedi.model.Intervento;
+import com.arvedi.model.Quadro;
+import com.arvedi.model.Tecnico;
+import com.arvedi.model.TipoQuadro;
 import com.arvedi.view.gui.GuiApp;
 
 import java.util.Locale;
@@ -29,9 +34,8 @@ public class App {
 
         // Switch expression (Java 14+)
         switch (mode) {
-            case "cli": runCli();  // Start Command Line Interface
             case "gui": runGui();  // Start Graphical Interface
-            default: showMenu(); // Ask the user (1 or 2)
+            default: showMenu();
         }
     }
 
@@ -51,7 +55,6 @@ public class App {
     private static String parseMode(String[] args) {
         for (String a : args) {
             String v = a.toLowerCase(Locale.ROOT);
-            if (v.contains("cli")) return "cli";
             if (v.contains("gui")) return "gui";
         }
         return "menu";
@@ -66,14 +69,7 @@ public class App {
     private static AppController newController() {
         return new AppController(new Counter());
     }
-
-    /**
-     * Starts the text-based interface.
-     * Creates a CLI View and calls start().
-     */
-    private static void runCli() {
-        new CliView(newController()).start();
-    }
+    
 
     /**
      * Starts the JavaFX GUI.
@@ -100,21 +96,6 @@ public class App {
      */
     private static void showMenu() {
         System.out.println("=== Launcher ===");
-        System.out.println("1) CLI");
-        System.out.println("2) GUI (JavaFX)");
-        System.out.print("Choose [1-2]: ");
-
-        Scanner sc = new Scanner(System.in);
-        String choice = sc.nextLine().trim();
-
-        if ("1".equals(choice)) {
-            runCli();
-        }
-        else if ("2".equals(choice)) {
-            runGui();
-        }
-        else {
-            System.out.println("Bye.");
-        }
+        runGui();
     }
 }
