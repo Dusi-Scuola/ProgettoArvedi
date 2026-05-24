@@ -1,7 +1,14 @@
 package com.arvedi.view.gui;
 
 import com.arvedi.controller.AppController;
+
+import com.arvedi.model.Cabina;
+import com.arvedi.model.Controllo;
+import com.arvedi.model.Esterno;
+import com.arvedi.model.Intervento;
 import com.arvedi.model.Quadro;
+import com.arvedi.model.Tecnico;
+import com.arvedi.model.TipoQuadro;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -10,7 +17,9 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -178,19 +187,40 @@ public class viewController {
 
     @FXML
     private MenuButton listInterventi;
-
+    
+    private ArrayList<Quadro> quadriSelezionabili = new ArrayList<>();
+    private ArrayList<CheckMenuItem> checkItemsQuadri = new ArrayList<>();
+    private ArrayList<Cabina> cabineSelezionabili = new ArrayList<>();
+    private ArrayList<CheckMenuItem> checkItemsCabine = new ArrayList<>(); //intervento dovrà accertarsi che sia solo una selezionata
+    
     @FXML
     void CreaCabina(ActionEvent event) {
-    	if (quadroSelezionato == null) {
-            System.out.println("Errore: devi prima selezionare un quadro dal menu!");
-            return;
+    	boolean quadroSelezionato = false;
+    	for(int i=0; i < checkItemsQuadri.size(); i++) {
+    		if(checkItemsQuadri.get(i).isSelected()) {
+    			quadroSelezionato = true;
+    		}
+    	}
+    	if (quadroSelezionato == true && txtCodiceCabina.getText() != null && txtPosizione.getText() != null) {
+    		String CC = txtCodiceCabina.getText();
+            String P = txtPosizione.getText();
+            
+            ArrayList<Quadro> selezionati = new ArrayList<>();
+            
+            for(int i = 0; i < checkItemsQuadri.size(); i++) {
+            	if(checkItemsQuadri.get(i).isSelected()) {
+            		selezionati.add(quadriSelezionabili.get(i));
+            	}
+            }
+            Cabina c = new Cabina(CC, P, selezionati);
+            
+            MenuItem item = new MenuItem(c.getCodiceCabina());
+    		listCabine1.getItems().add(item);
+    		CheckMenuItem check = new CheckMenuItem(c.getCodiceCabina());
+    		listCabina.getItems().add(check);
+    		checkItemsCabine.add(check);
+    		cabineSelezionabili.add(c);
         }
-
-        String codiceCabina = txtCodiceCabina.getText();
-        String posizione = txtPosizione.getText();
-        Quadro quadro =
-        // Ora puoi usare quadroSelezionato per creare la tua Cabina
-        Cabina nuovaCabina = new Cabina(codiceCabina, quadro, posizione);
     }
 
     @FXML
@@ -210,7 +240,18 @@ public class viewController {
 
     @FXML
     void CreaQuadro(ActionEvent event) {
-
+    	if(txtTipoQuadro.getText() != null && txtCodiceQuadro.getText() != null) {
+    		String TQ = txtTipoQuadro.getText();
+    		String CQ = txtCodiceQuadro.getText();
+    		Quadro q = new Quadro(TQ, CQ);
+    		
+    		MenuItem item = new MenuItem(q.getCodiceQuadro());
+    		listQuadri1.getItems().add(item);
+    		CheckMenuItem check = new CheckMenuItem(q.getCodiceQuadro());
+    		listQuadri.getItems().add(check);
+    		checkItemsQuadri.add(check);
+    		quadriSelezionabili.add(q);
+    	}
     }
 
     @FXML
@@ -257,40 +298,8 @@ public class viewController {
     void VisualizzaTipoQuadro(ActionEvent event) {
 
     }
+
     
-    private Quadro quadroSelezionato;
-    
-
-    public void aggiornaMenuQuadri(List<Quadro> quadri) {
-    	public void aggiornaMenuQuadri(List<Quadro> listaQuadriEsistenti) {
-    	    // 1. Puliamo il menu dalle voci vecchie (o dai "Action 1" di default)
-    	    listQuadri.getItems().clear();
-
-    	    // 2. Cicliamo i tuoi oggetti
-    	    for (Quadro q : listaQuadriEsistenti) {
-    	        
-    	        // Creiamo una voce di menu con il testo dell'oggetto (es. il codice)
-    	        MenuItem voce = new MenuItem(q.getCodice());
-
-    	        // Definiamo cosa succede quando l'utente clicca quella voce
-    	        voce.setOnAction(event -> {
-    	            // Aggiorniamo il testo del bottone per mostrare cosa � stato scelto
-    	            listQuadri.setText("Selezionato: " + q.getCodice());
-    	            
-    	            // Salviamo l'oggetto scelto nella nostra variabile di appoggio
-    	            this.quadroSelezionato = q;
-    	            
-    	            System.out.println("Hai scelto il quadro: " + q.getCodice());
-    	        });
-
-    	        // 3. Aggiungiamo la voce al MenuButton
-    	        listQuadri.getItems().add(voce);
-    	    }
-    	}
-
-    }
-
-
     @FXML
     void initialize() {
         assert txtTipoQuadro != null : "fx:id=\"txtTipoQuadro\" was not injected: check your FXML file 'view.fxml'.";

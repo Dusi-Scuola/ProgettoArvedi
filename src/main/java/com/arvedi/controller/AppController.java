@@ -45,6 +45,10 @@ public class AppController {
 
       //CLASSE CABINA
         
+        public String CabinaToString() {
+        	return cabina.toString();
+        }
+        
         public String getCodiceCabina() {
             return cabina.getCodiceCabina();
         }
@@ -58,6 +62,10 @@ public class AppController {
         }
         
     //CLASSE CONTROLLO
+        
+        public String ControlloToString() {
+        	return controllo.toString();
+        }
 
         public String getDescrizioneControllo() {
             return controllo.getDescrizione();
@@ -65,6 +73,10 @@ public class AppController {
     
         
     //CLASSE ESTERNO
+        
+        public String EsternoToString() {
+        	return esterno.toString();
+        }
         
         public String getAzienda() {
             return esterno.getAzienda();
@@ -75,6 +87,10 @@ public class AppController {
         }
         
      //CLASSE INTERVENTO
+        
+        public String InterventoToString() {
+        	return intervento.toString();
+        }
 
         public Cabina getCabinaSelezionata() {
             return intervento.getCabinaSelezionata();
@@ -91,6 +107,10 @@ public class AppController {
         
     //CLASSE QUADRO
 
+        public String QuadroToString() {
+        	return quadro.toString();
+        }
+        
         public String getTipologia() {
             return quadro.getTipologia();
         }
@@ -101,6 +121,10 @@ public class AppController {
         
         
     //CLASSE TECNICO
+        
+        public String TecnicoToString() {
+        	return tecnico.toString();
+        }
 
         public String getCognomeTecnico() {
             return tecnico.getCognome();
@@ -116,6 +140,10 @@ public class AppController {
         
         
      //CLASSE TIPOQUADRO
+        
+        public String TipoQuadroToString() {
+        	return tipoquadro.toString();
+        }
 
         public String getNomeTQ() {
             return tipoquadro.getNome();
