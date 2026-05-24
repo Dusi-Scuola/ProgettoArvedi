@@ -21,6 +21,5 @@ module com.arvedi.app {
      */
     exports com.arvedi.controller;
     exports com.arvedi.model;
-    exports com.arvedi.view.cli;
     exports com.arvedi.view.gui;
 }
