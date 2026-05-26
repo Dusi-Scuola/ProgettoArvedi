@@ -85,7 +85,7 @@ public class App {
         Cabina cabina = new Cabina("CAB001", "Zona Nord", quadri);
 
         // Sample Controllo
-        Controllo controllo = new Controllo("Controllo periodico annuale");
+        Controllo controllo = new Controllo("Controllo 2025", "Controllo periodico annuale");
 
         // Sample Esterno (extends Tecnico)
         Esterno esterno = new Esterno("Rossi", "Mario", "ElettroService Srl");

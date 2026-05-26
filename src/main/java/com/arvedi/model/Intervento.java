@@ -20,17 +20,17 @@ public class Intervento{
 	private ArrayList<Tecnico> personale;
 	private LocalDate data;
 	private String note;
-	private boolean esito;
+	private boolean esitoPositivo;
 	private int priorita;
 	
 	public Intervento(Cabina cabinaSelezionata, String codiceIntervento, ArrayList<Tecnico> personale, LocalDate data,
-			String note, boolean esito, int priorita) {
+			String note, boolean esitoPositivo, int priorita) {
 		this.cabinaSelezionata = cabinaSelezionata;
 		this.codiceIntervento = codiceIntervento;
 		this.personale = personale;
 		this.data = data;
 		this.note = note;
-		this.esito = esito;
+		this.esitoPositivo = esitoPositivo;
 		this.priorita = priorita;
 	}
 
@@ -74,12 +74,12 @@ public class Intervento{
 		this.note = note;
 	}
 
-	public boolean isEsito() {
-		return esito;
+	public boolean isEsitoPositivo() {
+		return esitoPositivo;
 	}
 
-	public void setEsito(boolean esito) {
-		this.esito = esito;
+	public void setEsito(boolean esitoPositivo) {
+		this.esitoPositivo = esitoPositivo;
 	}
 
 	public int getPriorita() {
@@ -93,7 +93,7 @@ public class Intervento{
 	@Override
 	public String toString() {
 		return "Intervento [cabinaSelezionata=" + cabinaSelezionata + ", codiceIntervento=" + codiceIntervento
-				+ ", personale=" + personale + ", data=" + data + ", note=" + note + ", esito=" + esito + ", priorita="
+				+ ", personale=" + personale + ", data=" + data + ", note=" + note + ", esitoPositivo=" + esitoPositivo + ", priorita="
 				+ priorita + "]";
 	}
 	

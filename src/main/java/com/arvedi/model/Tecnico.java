@@ -13,8 +13,8 @@ package com.arvedi.model;
  */
 public class Tecnico{
 	//DICHIARAZIONE ATTRIBUTI
-		private String cognome;
-		private String nome;
+		protected String cognome;
+		protected String nome;
 		
 	//COSTRUTTORE E METODI GETTER E SETTER
 		public Tecnico(String cognome, String nome) {
@@ -39,8 +39,8 @@ public class Tecnico{
 		}
 	
 		public void licenziaTecnico() {
-			nome=null;
-			cognome=null;
+			this.nome=null;
+			this.cognome=null;
 		}
 		
 	 //TOSTRING

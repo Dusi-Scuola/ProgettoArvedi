@@ -29,8 +29,9 @@ public class Esterno extends Tecnico{
 		}
 		
 		public void licenziaEsterno() {
-			licenziaTecnico();
-			azienda=null;
+			this.nome=null;
+			this.cognome=null;
+			this.azienda=null;
 		}
 	//TOSTRING
 		@Override

@@ -2,6 +2,8 @@ package com.arvedi.view.gui;
 
 import com.arvedi.controller.AppController;
 
+import java.time.LocalDate;
+
 import com.arvedi.model.Cabina;
 import com.arvedi.model.Controllo;
 import com.arvedi.model.Esterno;
@@ -19,9 +21,10 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
 
 public class viewController {
@@ -31,7 +34,7 @@ public class viewController {
 	public viewController(AppController controller) {
         this.controller = controller;
     }
-
+	
     @FXML
     private ResourceBundle resources;
 
@@ -41,6 +44,18 @@ public class viewController {
     @FXML
     private TextField txtTipoQuadro;
 
+    @FXML
+    private Button btnLicenziaEsterno;
+
+    @FXML
+    private Button btnLicenziaInterno;
+    
+    @FXML
+    private MenuButton listLicenziaEsterni;
+
+    @FXML
+    private MenuButton listLicenziaInterni;
+    
     @FXML
     private TextField txtCodiceQuadro;
 
@@ -58,6 +73,9 @@ public class viewController {
 
     @FXML
     private Button btnCabina;
+    
+    @FXML
+    private DatePicker dateData;
 
     @FXML
     private TextField txtNomeTecnico;
@@ -126,31 +144,31 @@ public class viewController {
     private Button btnIntervento;
 
     @FXML
-    private TextField txtVisualizzaQuadro;
+    private TextArea txtVisualizzaQuadro;
 
     @FXML
     private Button btnVisualizzaEsterno;
 
     @FXML
-    private TextField txtVisualizzaCabina;
+    private TextArea txtVisualizzaCabina;
 
     @FXML
     private Button btnVisualizzaCabina;
 
     @FXML
-    private TextField txtVisualizzaTecnico;
+    private TextArea txtVisualizzaTecnico;
 
     @FXML
     private Button btnVisualizzaTecnico;
 
     @FXML
-    private TextField txtVisualizzaEsterno;
+    private TextArea txtVisualizzaEsterno;
 
     @FXML
     private Button btnVisualizzaQuadro;
 
     @FXML
-    private TextField txtVisualizzaTipoQuadro;
+    private TextArea txtVisualizzaTipoQuadro;
 
     @FXML
     private Button btnVisualizzaTipoQuadro;
@@ -159,13 +177,13 @@ public class viewController {
     private Button btnVisualizzaControllo;
 
     @FXML
-    private TextField txtVisualizzaIntervento;
+    private TextArea txtVisualizzaIntervento;
 
     @FXML
     private Button btnVisualizzaIntervento;
 
     @FXML
-    private TextField txtVisualizzaControllo;
+    private TextArea txtVisualizzaControllo;
 
     @FXML
     private MenuButton listQuadri1;
@@ -191,18 +209,25 @@ public class viewController {
     private ArrayList<Quadro> quadriSelezionabili = new ArrayList<>();
     private ArrayList<Cabina> cabineSelezionabili = new ArrayList<>();
     private ArrayList<Controllo> controlliSelezionabili = new ArrayList<>();
-    private ArrayList<Intervento> interventoSelezionabili = new ArrayList<>();
+    private ArrayList<Intervento> interventiSelezionabili = new ArrayList<>();
     private ArrayList<TipoQuadro> tipiquadriSelezionabili = new ArrayList<>();
     private ArrayList<Tecnico> tecniciSelezionabili = new ArrayList<>();
     private ArrayList<Esterno> esterniSelezionabili = new ArrayList<>();
+    private ArrayList<Esterno> personaleSelezionabile = new ArrayList<>();
+    
     
     private ArrayList<CheckMenuItem> checkItemsQuadri = new ArrayList<>();
-    private ArrayList<CheckMenuItem> checkItemsCabine = new ArrayList<>(); //intervento dovrà accertarsi che sia solo una selezionata
-    private ArrayList<CheckMenuItem> checkItemsControlli = new ArrayList<>();
-    private ArrayList<CheckMenuItem> checkItemsInterventi = new ArrayList<>();
-    private ArrayList<CheckMenuItem> checkItemsTipiQuadri = new ArrayList<>();
-    private ArrayList<CheckMenuItem> checkItemstecnici = new ArrayList<>();
-    private ArrayList<CheckMenuItem> checkItemsEsterni = new ArrayList<>();
+    private ArrayList<CheckMenuItem> checkItemsQuadriView = new ArrayList<>();
+    private ArrayList<CheckMenuItem> checkItemsCabine = new ArrayList<>();
+    private ArrayList<CheckMenuItem> checkItemsCabineView = new ArrayList<>();
+    private ArrayList<CheckMenuItem> checkItemsControlliView = new ArrayList<>();
+    private ArrayList<CheckMenuItem> checkItemsInterventiView = new ArrayList<>();
+    private ArrayList<CheckMenuItem> checkItemsTipiQuadriView = new ArrayList<>();
+    private ArrayList<CheckMenuItem> checkItemsPersonale = new ArrayList<>();
+    private ArrayList<CheckMenuItem> checkItemsTecniciView = new ArrayList<>();
+    private ArrayList<CheckMenuItem> checkItemsEsterniView = new ArrayList<>();
+    private ArrayList<CheckMenuItem> esterniLicenziabili = new ArrayList<>();
+    private ArrayList<CheckMenuItem> interniLicenziabili = new ArrayList<>();
     
     @FXML
     void CreaCabina(ActionEvent event) {
@@ -212,7 +237,7 @@ public class viewController {
     			quadroSelezionato = true;
     		}
     	}
-    	if (quadroSelezionato == true && txtCodiceCabina.getText() != null && txtPosizione.getText() != null) {
+    	if (quadroSelezionato && txtCodiceCabina.getText() != null && txtPosizione.getText() != null) {
     		String CC = txtCodiceCabina.getText();
             String P = txtPosizione.getText();
             
@@ -225,11 +250,12 @@ public class viewController {
             }
             Cabina c = new Cabina(CC, P, selezionati);
             
-            MenuItem item = new MenuItem(c.getCodiceCabina());
-    		listCabine1.getItems().add(item);
-    		CheckMenuItem check = new CheckMenuItem(c.getCodiceCabina());
+            CheckMenuItem check = new CheckMenuItem(c.getCodiceCabina());
+    		CheckMenuItem checkView = new CheckMenuItem(c.getCodiceCabina());
     		listCabina.getItems().add(check);
+    		listCabine1.getItems().add(checkView);
     		checkItemsCabine.add(check);
+    		checkItemsCabineView.add(checkView);
     		cabineSelezionabili.add(c);
         }
     }
@@ -241,9 +267,9 @@ public class viewController {
     		String descrizione = txtDescrizioneTipo.getText();
     		Controllo c = new Controllo(nome, descrizione);
     		
-    		CheckMenuItem check = new CheckMenuItem(c.getNome());
-    		listControlli.getItems().add(check);
-    		checkItemsControlli.add(check);
+    		CheckMenuItem checkView = new CheckMenuItem(c.getNome());
+    		listControlli.getItems().add(checkView);
+    		checkItemsControlliView.add(checkView);
     		controlliSelezionabili.add(c);
     	}
     }
@@ -256,17 +282,60 @@ public class viewController {
     		String azienda = txtAziendaEsterno.getText();
     		Esterno e = new Esterno(nome, cognome, azienda);
     		
-    		CheckMenuItem check = new CheckMenuItem(e.getNome());
+    		CheckMenuItem check = new CheckMenuItem(e.getNome() + " " + e.getCognome());
+    		CheckMenuItem checkView = new CheckMenuItem(e.getNome() + " " + e.getCognome());
+    		CheckMenuItem checkLicenzia = new CheckMenuItem(e.getNome() + " " + e.getCognome());
     		listPersonale.getItems().add(check);
-    		listEsterni.getItems().add(check);
-    		checkItemsEsterni.add(check);
+    		listEsterni.getItems().add(checkView);
+    		listLicenziaEsterni.getItems().add(checkLicenzia);
+    		checkItemsPersonale.add(check);
+    		checkItemsEsterniView.add(checkView);
     		esterniSelezionabili.add(e);
+    		personaleSelezionabile.add(e);
+    		esterniLicenziabili.add(e);
     	}
     }
 
     @FXML
     void CreaIntervento(ActionEvent event) {
-
+    	boolean personaleSelezionato = false;
+    	int cabineSelezionate = 0;
+    	for(int i=0; i < checkItemsCabine.size(); i++) {
+    		if(checkItemsCabine.get(i).isSelected()) {
+    			cabineSelezionate++;
+    		}
+    	}
+    	for(int i=0; i < checkItemsPersonale.size(); i++) {
+        	if(checkItemsPersonale.get(i).isSelected()) {
+        		personaleSelezionato = true;
+        	}
+    	}
+    	if (personaleSelezionato && cabineSelezionate == 1 && txtPriorita.getText() != null && txtCodiceIntervento.getText() != null && dateData.getValue() != null) {
+    		int priorita = Integer.parseInt(txtPriorita.getText());
+            String CI = txtCodiceIntervento.getText();
+            String Note = txtNote.getText();
+            Cabina cabinaSelezionata = null;
+            ArrayList<Tecnico> personaleSelezionatoList = new ArrayList<>();
+            LocalDate d = dateData.getValue();
+            boolean esitoPositivo = radPositivo.isSelected();
+            
+            for(int i = 0; i < checkItemsPersonale.size(); i++) {
+            	if(checkItemsPersonale.get(i).isSelected()) {
+            		personaleSelezionatoList.add(personaleSelezionabile.get(i));
+            	}
+            }
+            for(int i = 0; i < checkItemsCabine.size(); i++) {
+            	if(checkItemsCabine.get(i).isSelected()) {
+            		cabinaSelezionata = cabineSelezionabili.get(i);
+            	}
+            }
+            Intervento I = new Intervento(cabinaSelezionata, CI, personaleSelezionatoList, d, Note, esitoPositivo, priorita);
+            
+    		CheckMenuItem checkView = new CheckMenuItem(I.getCodiceIntervento());
+    		listInterventi.getItems().add(checkView);
+    		checkItemsInterventiView.add(checkView);
+    		interventiSelezionabili.add(I);
+        }
     }
 
     @FXML
@@ -277,9 +346,11 @@ public class viewController {
     		Quadro q = new Quadro(TQ, CQ);
     		
     		CheckMenuItem check = new CheckMenuItem(q.getCodiceQuadro());
+    		CheckMenuItem checkView = new CheckMenuItem(q.getCodiceQuadro());
     		listQuadri.getItems().add(check);
-    		listQuadri1.getItems().add(check);
+    		listQuadri1.getItems().add(checkView);
     		checkItemsQuadri.add(check);
+    		checkItemsQuadriView.add(checkView);
     		quadriSelezionabili.add(q);
     	}
     }
@@ -291,51 +362,172 @@ public class viewController {
     		String cognome = txtCognomeTecnico.getText();
     		Tecnico t = new Tecnico(nome, cognome);
     		
-    		CheckMenuItem check = new CheckMenuItem(t.getNome());
+    		CheckMenuItem check = new CheckMenuItem(t.getNome() + " " + t.getCognome());
+    		CheckMenuItem checkView = new CheckMenuItem(t.getNome() + " " + t.getCognome());
+    		CheckMenuItem checkLicenzia = new CheckMenuItem(t.getNome() + " " + t.getCognome());
     		listPersonale.getItems().add(check);
-    		listTecnici.getItems().add(check);
-    		checkItemstecnici.add(check);
+    		listTecnici.getItems().add(checkView);
+    		checkItemsPersonale.add(check);
+    		checkItemsTecniciView.add(checkView);
     		tecniciSelezionabili.add(t);
+    		interniLicenziabili.add(checkLicenzia);
     	}
     }
 
     @FXML
     void CreaTipoQuadro(ActionEvent event) {
-
+    	if(txtNomeTipo.getText() != null && txtDescrizioneTipo.getText() != null) {
+    		String nome = txtNomeTipo.getText();
+    		String descrizione = txtDescrizioneTipo.getText();
+    		TipoQuadro tq = new TipoQuadro(nome, descrizione);
+    		
+    		CheckMenuItem checkView = new CheckMenuItem(tq.getNome());
+    		listTipoQuadri.getItems().add(checkView);
+    		checkItemsTipiQuadriView.add(checkView);
+    		tipiquadriSelezionabili.add(tq);
+    	}
     }
 
     @FXML
     void VisualizzaCabina(ActionEvent event) {
-
+    	int cabineSelezionate=0;
+    	Cabina cabinaTemporanea;
+    	for(int i=0; i < checkItemsCabineView.size(); i++) {
+    		if(checkItemsCabineView.get(i).isSelected()) {
+    			cabineSelezionate++;
+    		}
+    	}
+    	if(cabineSelezionate == 1) {
+    		for(int i = 0; i < checkItemsCabineView.size(); i++) {
+            	if(checkItemsCabineView.get(i).isSelected()) {
+            		cabinaTemporanea = cabineSelezionabili.get(i);
+            		txtVisualizzaCabina.setText(cabinaTemporanea.toString());
+            	}
+            }
+    	}
     }
 
     @FXML
     void VisualizzaControllo(ActionEvent event) {
-
+    	int controlliSelezionati=0;
+    	Controllo controlloTemporaneo;
+    	for(int i=0; i < checkItemsControlliView.size(); i++) {
+    		if(checkItemsControlliView.get(i).isSelected()) {
+    			controlliSelezionati++;
+    		}
+    	}
+    	if(controlliSelezionati == 1) {
+    		for(int i = 0; i < checkItemsControlliView.size(); i++) {
+            	if(checkItemsControlliView.get(i).isSelected()) {
+            		controlloTemporaneo = controlliSelezionabili.get(i);
+            		txtVisualizzaControllo.setText(controlloTemporaneo.toString());
+            	}
+            }
+    	}
     }
 
     @FXML
     void VisualizzaEsterno(ActionEvent event) {
-
+    	int esterniSelezionati=0;
+    	Esterno esternoTemporaneo;
+    	for(int i=0; i < checkItemsEsterniView.size(); i++) {
+    		if(checkItemsEsterniView.get(i).isSelected()) {
+    			esterniSelezionati++;
+    		}
+    	}
+    	if(esterniSelezionati == 1) {
+    		for(int i = 0; i < checkItemsEsterniView.size(); i++) {
+            	if(checkItemsEsterniView.get(i).isSelected()) {
+            		esternoTemporaneo = esterniSelezionabili.get(i);
+            		txtVisualizzaEsterno.setText(esternoTemporaneo.toString());
+            	}
+            }
+    	}
     }
 
     @FXML
     void VisualizzaIntervento(ActionEvent event) {
-
+    	int interventiSelezionati=0;
+    	Esterno interventoTemporaneo;
+    	for(int i=0; i < checkItemsInterventiView.size(); i++) {
+    		if(checkItemsInterventiView.get(i).isSelected()) {
+    			interventiSelezionati++;
+    		}
+    	}
+    	if(interventiSelezionati == 1) {
+    		for(int i = 0; i < checkItemsInterventiView.size(); i++) {
+            	if(checkItemsInterventiView.get(i).isSelected()) {
+            		interventoTemporaneo = esterniSelezionabili.get(i);
+            		txtVisualizzaIntervento.setText(interventoTemporaneo.toString());
+            	}
+            }
+    	}
     }
 
     @FXML
     void VisualizzaQuadro(ActionEvent event) {
-    	
+    	int quadriSelezionati=0;
+    	Quadro quadroTemporaneo;
+    	for(int i=0; i < checkItemsQuadriView.size(); i++) {
+    		if(checkItemsQuadriView.get(i).isSelected()) {
+    			quadriSelezionati++;
+    		}
+    	}
+    	if(quadriSelezionati == 1) {
+    		for(int i = 0; i < checkItemsQuadriView.size(); i++) {
+            	if(checkItemsQuadriView.get(i).isSelected()) {
+            		quadroTemporaneo = quadriSelezionabili.get(i);
+            		txtVisualizzaQuadro.setText(quadroTemporaneo.toString());
+            	}
+            }
+    	}
     }
 
     @FXML
     void VisualizzaTecnico(ActionEvent event) {
-
+    	int tecniciSelezionati=0;
+    	Tecnico tecnicoTemporaneo;
+    	for(int i=0; i < checkItemsTecniciView.size(); i++) {
+    		if(checkItemsTecniciView.get(i).isSelected()) {
+    			tecniciSelezionati++;
+    		}
+    	}
+    	if(tecniciSelezionati == 1) {
+    		for(int i = 0; i < checkItemsTecniciView.size(); i++) {
+            	if(checkItemsTecniciView.get(i).isSelected()) {
+            		tecnicoTemporaneo = tecniciSelezionabili.get(i);
+            		txtVisualizzaTecnico.setText(tecnicoTemporaneo.toString());
+            	}
+            }
+    	}
     }
 
     @FXML
     void VisualizzaTipoQuadro(ActionEvent event) {
+    	int tqSelezionati=0;
+    	TipoQuadro tqTemporaneo;
+    	for(int i=0; i < checkItemsTecniciView.size(); i++) {
+    		if(checkItemsTecniciView.get(i).isSelected()) {
+    			tqSelezionati++;
+    		}
+    	}
+    	if(tqSelezionati == 1) {
+    		for(int i = 0; i < checkItemsTipiQuadriView.size(); i++) {
+            	if(checkItemsTipiQuadriView.get(i).isSelected()) {
+            		tqTemporaneo = tipiquadriSelezionabili.get(i);
+            		txtVisualizzaTipoQuadro.setText(tqTemporaneo.toString());
+            	}
+            }
+    	}
+    }
+    
+    @FXML
+    void LicenziaEsterno(ActionEvent event) {
+
+    }
+
+    @FXML
+    void LicenziaInterno(ActionEvent event) {
 
     }
 
@@ -362,6 +554,7 @@ public class viewController {
         assert txtDescrizioneControllo != null : "fx:id=\"txtDescrizioneControllo\" was not injected: check your FXML file 'view.fxml'.";
         assert txtNomeControllo != null : "fx:id=\"txtNomeControllo\" was not injected: check your FXML file 'view.fxml'.";
         assert btnControllo != null : "fx:id=\"btnControllo\" was not injected: check your FXML file 'view.fxml'.";
+        assert dateData != null : "fx:id=\"dateData\" was not injected: check your FXML file 'view.fxml'.";
         assert txtPriorita != null : "fx:id=\"txtPriorita\" was not injected: check your FXML file 'view.fxml'.";
         assert txtCodiceIntervento != null : "fx:id=\"txtCodiceIntervento\" was not injected: check your FXML file 'view.fxml'.";
         assert txtNote != null : "fx:id=\"txtNote\" was not injected: check your FXML file 'view.fxml'.";
@@ -392,6 +585,10 @@ public class viewController {
         assert listTipoQuadri != null : "fx:id=\"listTipoQuadri\" was not injected: check your FXML file 'view.fxml'.";
         assert listControlli != null : "fx:id=\"listControlli\" was not injected: check your FXML file 'view.fxml'.";
         assert listInterventi != null : "fx:id=\"listInterventi\" was not injected: check your FXML file 'view.fxml'.";
+        assert listLicenziaEsterni != null : "fx:id=\"listLicenziaEsterni\" was not injected: check your FXML file 'view.fxml'.";
+        assert listLicenziaInterni != null : "fx:id=\"listLicenziaInterni\" was not injected: check your FXML file 'view.fxml'.";
+        assert btnLicenziaEsterno != null : "fx:id=\"btnLicenziaEsterno\" was not injected: check your FXML file 'view.fxml'.";
+        assert btnLicenziaInterno != null : "fx:id=\"btnLicenziaInterno\" was not injected: check your FXML file 'view.fxml'.";
 
     }
 }
