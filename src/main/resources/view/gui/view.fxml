@@ -131,21 +131,13 @@
          </items>
       </MenuButton>
       <DatePicker fx:id="dateData" layoutX="577.0" layoutY="251.0" prefHeight="25.0" prefWidth="149.0" />
-      <Button fx:id="btnLicenziaEsterno" layoutX="928.0" layoutY="231.0" mnemonicParsing="false" onAction="#LicenziaEsterno" text="Licenzia Esterno" />
-      <Button fx:id="btnLicenziaInterno" layoutX="932.0" layoutY="79.0" mnemonicParsing="false" text="Licenzia Interno" />
-      <MenuButton fx:id="listLicenziaEsterni" layoutX="925.0" layoutY="193.0" mnemonicParsing="false" text="Tecnici Esterni">
+      <Button fx:id="btnLicenzia" layoutX="950.0" layoutY="79.0" mnemonicParsing="false" onAction="#LicenziaTecnico" text="Licenzia" />
+      <MenuButton fx:id="listLicenzia" layoutX="940.0" layoutY="45.0" mnemonicParsing="false" text="Personale">
         <items>
           <MenuItem mnemonicParsing="false" text="Action 1" />
           <MenuItem mnemonicParsing="false" text="Action 2" />
         </items>
       </MenuButton>
-      <MenuButton fx:id="listLicenziaInterni" layoutX="928.0" layoutY="45.0" mnemonicParsing="false" onAction="#LicenziaInterno" text="Tecnici Interni">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
-        </items>
-      </MenuButton>
-      <Label layoutX="904.0" layoutY="15.0" text="LICENZIA TECNICO INTERNO" />
-      <Label layoutX="902.0" layoutY="167.0" text="LICENZIA TECNICO ESTERNO" />
+      <Label layoutX="928.0" layoutY="15.0" text="LICENZIA TECNICO" />
    </children>
 </AnchorPane>

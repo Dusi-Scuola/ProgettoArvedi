@@ -17,9 +17,9 @@ public class Tecnico{
 		protected String nome;
 		
 	//COSTRUTTORE E METODI GETTER E SETTER
-		public Tecnico(String cognome, String nome) {
-			this.cognome = cognome;
+		public Tecnico(String nome, String cognome) {
 			this.nome = nome;
+			this.cognome = cognome;
 			}
 		
 		public String getCognome() {

@@ -45,16 +45,10 @@ public class viewController {
     private TextField txtTipoQuadro;
 
     @FXML
-    private Button btnLicenziaEsterno;
-
-    @FXML
-    private Button btnLicenziaInterno;
+    private Button btnLicenzia;
     
     @FXML
-    private MenuButton listLicenziaEsterni;
-
-    @FXML
-    private MenuButton listLicenziaInterni;
+    private MenuButton listLicenzia;
     
     @FXML
     private TextField txtCodiceQuadro;
@@ -213,7 +207,7 @@ public class viewController {
     private ArrayList<TipoQuadro> tipiquadriSelezionabili = new ArrayList<>();
     private ArrayList<Tecnico> tecniciSelezionabili = new ArrayList<>();
     private ArrayList<Esterno> esterniSelezionabili = new ArrayList<>();
-    private ArrayList<Esterno> personaleSelezionabile = new ArrayList<>();
+    private ArrayList<Tecnico> personaleSelezionabile = new ArrayList<>();
     
     
     private ArrayList<CheckMenuItem> checkItemsQuadri = new ArrayList<>();
@@ -226,8 +220,7 @@ public class viewController {
     private ArrayList<CheckMenuItem> checkItemsPersonale = new ArrayList<>();
     private ArrayList<CheckMenuItem> checkItemsTecniciView = new ArrayList<>();
     private ArrayList<CheckMenuItem> checkItemsEsterniView = new ArrayList<>();
-    private ArrayList<CheckMenuItem> esterniLicenziabili = new ArrayList<>();
-    private ArrayList<CheckMenuItem> interniLicenziabili = new ArrayList<>();
+    private ArrayList<CheckMenuItem> checkItemsPersonaleLicenziabile = new ArrayList<>();
     
     @FXML
     void CreaCabina(ActionEvent event) {
@@ -262,9 +255,9 @@ public class viewController {
 
     @FXML
     void CreaControllo(ActionEvent event) {
-    	if(txtNomeTipo.getText() != null && txtDescrizioneTipo.getText() != null) {
-    		String nome = txtNomeTipo.getText();
-    		String descrizione = txtDescrizioneTipo.getText();
+    	if(txtNomeControllo.getText() != null && txtDescrizioneControllo.getText() != null) {
+    		String nome = txtNomeControllo.getText();
+    		String descrizione = txtDescrizioneControllo.getText();
     		Controllo c = new Controllo(nome, descrizione);
     		
     		CheckMenuItem checkView = new CheckMenuItem(c.getNome());
@@ -287,12 +280,12 @@ public class viewController {
     		CheckMenuItem checkLicenzia = new CheckMenuItem(e.getNome() + " " + e.getCognome());
     		listPersonale.getItems().add(check);
     		listEsterni.getItems().add(checkView);
-    		listLicenziaEsterni.getItems().add(checkLicenzia);
+    		listLicenzia.getItems().add(checkLicenzia);
     		checkItemsPersonale.add(check);
     		checkItemsEsterniView.add(checkView);
+    		checkItemsPersonaleLicenziabile.add(checkLicenzia);
     		esterniSelezionabili.add(e);
     		personaleSelezionabile.add(e);
-    		esterniLicenziabili.add(e);
     	}
     }
 
@@ -367,10 +360,12 @@ public class viewController {
     		CheckMenuItem checkLicenzia = new CheckMenuItem(t.getNome() + " " + t.getCognome());
     		listPersonale.getItems().add(check);
     		listTecnici.getItems().add(checkView);
+    		listLicenzia.getItems().add(checkLicenzia);
     		checkItemsPersonale.add(check);
     		checkItemsTecniciView.add(checkView);
     		tecniciSelezionabili.add(t);
-    		interniLicenziabili.add(checkLicenzia);
+    		personaleSelezionabile.add(t);
+    		checkItemsPersonaleLicenziabile.add(checkLicenzia);
     	}
     }
 
@@ -448,7 +443,7 @@ public class viewController {
     @FXML
     void VisualizzaIntervento(ActionEvent event) {
     	int interventiSelezionati=0;
-    	Esterno interventoTemporaneo;
+    	Intervento interventoTemporaneo;
     	for(int i=0; i < checkItemsInterventiView.size(); i++) {
     		if(checkItemsInterventiView.get(i).isSelected()) {
     			interventiSelezionati++;
@@ -457,7 +452,7 @@ public class viewController {
     	if(interventiSelezionati == 1) {
     		for(int i = 0; i < checkItemsInterventiView.size(); i++) {
             	if(checkItemsInterventiView.get(i).isSelected()) {
-            		interventoTemporaneo = esterniSelezionabili.get(i);
+            		interventoTemporaneo = interventiSelezionabili.get(i);
             		txtVisualizzaIntervento.setText(interventoTemporaneo.toString());
             	}
             }
@@ -522,15 +517,22 @@ public class viewController {
     }
     
     @FXML
-    void LicenziaEsterno(ActionEvent event) {
-
+    void LicenziaTecnico(ActionEvent event) {
+    	for(int i = 0; i < checkItemsPersonaleLicenziabile.size(); i++) {
+        	if(checkItemsPersonaleLicenziabile.get(i).isSelected() && personaleSelezionabile.get(i).getClass() == Tecnico.class) {
+       			controller.licenziaInt(personaleSelezionabile.get(i));
+       			checkItemsPersonale.remove(i);
+        		checkItemsTecniciView.remove(i);
+        		tecniciSelezionabili.remove(i);
+        	}
+        	if(checkItemsPersonaleLicenziabile.get(i).isSelected() && personaleSelezionabile.get(i).getClass() == Esterno.class) {
+        		controller.licenziaEst((Esterno) personaleSelezionabile.get(i));
+        		checkItemsPersonale.remove(i);
+        		checkItemsEsterniView.remove(i);
+        		esterniSelezionabili.remove(i);
+        	}
+        }
     }
-
-    @FXML
-    void LicenziaInterno(ActionEvent event) {
-
-    }
-
     
     @FXML
     void initialize() {
@@ -585,10 +587,8 @@ public class viewController {
         assert listTipoQuadri != null : "fx:id=\"listTipoQuadri\" was not injected: check your FXML file 'view.fxml'.";
         assert listControlli != null : "fx:id=\"listControlli\" was not injected: check your FXML file 'view.fxml'.";
         assert listInterventi != null : "fx:id=\"listInterventi\" was not injected: check your FXML file 'view.fxml'.";
-        assert listLicenziaEsterni != null : "fx:id=\"listLicenziaEsterni\" was not injected: check your FXML file 'view.fxml'.";
-        assert listLicenziaInterni != null : "fx:id=\"listLicenziaInterni\" was not injected: check your FXML file 'view.fxml'.";
-        assert btnLicenziaEsterno != null : "fx:id=\"btnLicenziaEsterno\" was not injected: check your FXML file 'view.fxml'.";
-        assert btnLicenziaInterno != null : "fx:id=\"btnLicenziaInterno\" was not injected: check your FXML file 'view.fxml'.";
+        assert listLicenzia != null : "fx:id=\"listLicenziaInterni\" was not injected: check your FXML file 'view.fxml'.";
+        assert btnLicenzia != null : "fx:id=\"btnLicenziaEsterno\" was not injected: check your FXML file 'view.fxml'.";
 
     }
 }
