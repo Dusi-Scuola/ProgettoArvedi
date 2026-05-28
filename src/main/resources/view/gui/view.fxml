@@ -6,12 +6,88 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.arvedi.view.gui.viewController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1070.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.arvedi.view.gui.viewController">
+  <tabs>
+    <Tab text="Gestione anagrafica">
+      <content>
+        <children>
+          <Label layoutX="45.0" layoutY="14.0" prefHeight="17.0" prefWidth="110.0" text="GENERA QUADRO" />
+      	  <TextField fx:id="txtTipoQuadro" layoutX="23.0" layoutY="45.0" promptText="Tipologia" />
+          <TextField fx:id="txtCodiceQuadro" layoutX="23.0" layoutY="78.0" promptText="Codice" />
+          <Button fx:id="btnTecnicoEsterno" layoutX="35.0" layoutY="322.0" mnemonicParsing="false" onAction="#CreaEsterno" text="Crea Tecnico Esterno" />
+          <Label layoutX="227.0" layoutY="14.0" text="GENERA CABINA" />
+          <MenuButton fx:id="listQuadri" layoutX="198.0" layoutY="114.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Quadri">
+            <items>
+            </items>
+          </MenuButton>
+          <TextField fx:id="txtCodiceCabina" layoutX="198.0" layoutY="45.0" promptText="Codice" />
+          <TextField fx:id="txtPosizione" layoutX="198.0" layoutY="78.0" promptText="Posizione" />
+      	  <Label layoutX="368.0" layoutY="15.0" text="GENERA TECNICO INTERNO" />
+      	  <Button fx:id="btnCabina" layoutX="232.0" layoutY="150.0" mnemonicParsing="false" onAction="#CreaCabina" text="Crea Cabina" />
+      	  <TextField fx:id="txtNomeTecnico" layoutX="369.0" layoutY="46.0" promptText="Nome" />
+      	  <TextField fx:id="txtCognomeTecnico" layoutX="369.0" layoutY="79.0" promptText="Cognome" />
+      	  <Button fx:id="btnTecnicoInterno" layoutX="382.0" layoutY="115.0" mnemonicParsing="false" onAction="#CreaTecnicoInterno" text="Crea Tecnico Interno" />
+      	  <Label layoutX="23.0" layoutY="192.0" text="GENERA TECNICO ESTERNO" />
+      	  <TextField fx:id="txtNomeEsterno" layoutX="23.0" layoutY="217.0" promptText="Nome" />
+      	  <TextField fx:id="txtCognomeEsterno" layoutX="23.0" layoutY="252.0" promptText="Cognome" />
+      	  <TextField fx:id="txtAziendaEsterno" layoutX="23.0" layoutY="286.0" promptText="Azienda" />
+      	  <Button fx:id="btnQuadro" layoutX="57.0" layoutY="114.0" mnemonicParsing="false" onAction="#CreaQuadro" text="Crea Quadro" />
+      	  <Label layoutX="197.0" layoutY="192.0" text="GENERA TIPOLOGIA QUADRO" />
+      	  <TextField fx:id="txtNomeTipo" layoutX="198.0" layoutY="217.0" promptText="Nome" />
+      	  <TextField fx:id="txtDescrizioneTipo" layoutX="198.0" layoutY="252.0" prefHeight="62.0" prefWidth="149.0" promptText="Descrizione" />
+      	  <Button fx:id="btnTipologiaQuadro" layoutX="204.0" layoutY="322.0" mnemonicParsing="false" onAction="#CreaTipoQuadro" text="Crea Tipologia Quadro" />
+      	  <Label layoutX="380.0" layoutY="193.0" prefHeight="17.0" prefWidth="126.0" text="GENERA CONTROLLO" />
+      	  <TextField fx:id="txtDescrizioneControllo" layoutX="370.0" layoutY="253.0" prefHeight="62.0" prefWidth="149.0" promptText="Descrizione" />
+      	  <TextField fx:id="txtNomeControllo" layoutX="369.0" layoutY="218.0" promptText="Nome" />
+      	  <Button fx:id="btnControllo" layoutX="397.0" layoutY="323.0" mnemonicParsing="false" onAction="#CreaControllo" text="Crea Controllo" />
+      	  <Label layoutX="592.0" layoutY="14.0" text="GENERA INTERVENTO" />
+      	  <TextField fx:id="txtPriorita" layoutX="577.0" layoutY="45.0" promptText="Priorità (valore numerico)" />
+      	  <TextField fx:id="txtCodiceIntervento" layoutX="577.0" layoutY="78.0" promptText="Codice" />
+      	  <TextField fx:id="txtNote" layoutX="577.0" layoutY="108.0" prefHeight="62.0" prefWidth="149.0" promptText="Note dell'intervento" />
+      	  <MenuButton fx:id="listCabina" layoutX="577.0" layoutY="180.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Cabina">
+             <items>
+             </items>
+          </MenuButton>
+          <MenuButton fx:id="listPersonale" layoutX="577.0" layoutY="217.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Personale">
+             <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+             </items>
+          </MenuButton>
+          <RadioButton fx:id="radPositivo" layoutX="577.0" layoutY="277.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="149.0" text="Esito positivo">
+             <toggleGroup>
+                <ToggleGroup fx:id="esito" />
+             </toggleGroup>
+          </RadioButton>
+          <RadioButton fx:id="radNegativo" layoutX="577.0" layoutY="302.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="149.0" selected="true" text="Esito negativo" toggleGroup="$esito" />
+          <Button fx:id="btnIntervento" layoutX="602.0" layoutY="335.0" mnemonicParsing="false" onAction="#CreaIntervento" text="Crea Intervento" />
+          </children>
+        </content>
+      </Tab>
+      <Tab text="Visualizza">
+        <content>
+          <children>
+       
+          </children>
+        </content>
+      </Tab>
+      <Tab text="Altro">
+        <content>
+        <children>
+        
+        </children>
+      </content>
+    </Tab>
+  </tabs>
+     
+     
    <children>
       <Label layoutX="45.0" layoutY="14.0" prefHeight="17.0" prefWidth="110.0" text="GENERA QUADRO" />
       <TextField fx:id="txtTipoQuadro" layoutX="23.0" layoutY="45.0" promptText="Tipologia" />
@@ -140,4 +216,4 @@
       </MenuButton>
       <Label layoutX="928.0" layoutY="15.0" text="LICENZIA TECNICO" />
    </children>
-</AnchorPane>
+</TabPane>
