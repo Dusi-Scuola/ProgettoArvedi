@@ -37,11 +37,6 @@ public class Tecnico{
 		public void setNome(String nome) {
 			this.nome = nome;
 		}
-	
-		public void licenziaTecnico() {
-			this.nome=null;
-			this.cognome=null;
-		}
 		
 	 //TOSTRING
 		@Override

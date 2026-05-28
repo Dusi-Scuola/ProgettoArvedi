@@ -86,10 +86,6 @@ public class AppController {
             return esterno.getAzienda();
         }
         
-        public void licenziaEst(Esterno esterno) {
-        	esterno.licenziaEsterno();
-        }
-        
      //CLASSE INTERVENTO
         
         public String InterventoToString() {
@@ -137,11 +133,6 @@ public class AppController {
         public String getNomeTecnico() {
             return tecnico.getNome();
         }
-        
-        public void licenziaInt(Tecnico tecnico) {
-        	tecnico.licenziaTecnico();
-        }
-        
         
      //CLASSE TIPOQUADRO
         

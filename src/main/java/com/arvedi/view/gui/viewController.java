@@ -12,9 +12,20 @@ import com.arvedi.model.Quadro;
 import com.arvedi.model.Tecnico;
 import com.arvedi.model.TipoQuadro;
 
+import com.arvedi.csv_manager.CsvInterventiManager;
+import com.arvedi.csv_manager.CsvQuadriManager;
+import com.arvedi.csv_manager.CsvTipoQuadriManager;
+import com.arvedi.csv_manager.CsvTecniciManager;
+import com.arvedi.csv_manager.CsvEsterniManager;
+import com.arvedi.csv_manager.CsvCabineManager;
+import com.arvedi.csv_manager.CsvControlliManager;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+
+import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -223,7 +234,7 @@ public class viewController {
     private ArrayList<CheckMenuItem> checkItemsPersonaleLicenziabile = new ArrayList<>();
     
     @FXML
-    void CreaCabina(ActionEvent event) {
+    void CreaCabina(ActionEvent event) throws IOException {
     	boolean quadroSelezionato = false;
     	for(int i=0; i < checkItemsQuadri.size(); i++) {
     		if(checkItemsQuadri.get(i).isSelected()) {
@@ -243,54 +254,38 @@ public class viewController {
             }
             Cabina c = new Cabina(CC, P, selezionati);
             
-            CheckMenuItem check = new CheckMenuItem(c.getCodiceCabina());
-    		CheckMenuItem checkView = new CheckMenuItem(c.getCodiceCabina());
-    		listCabina.getItems().add(check);
-    		listCabine1.getItems().add(checkView);
-    		checkItemsCabine.add(check);
-    		checkItemsCabineView.add(checkView);
-    		cabineSelezionabili.add(c);
+            aggiungiCabinaAllaGrafica(c);
+            CsvCabineManager.salvaCabine(cabineSelezionabili);
         }
     }
 
     @FXML
-    void CreaControllo(ActionEvent event) {
+    void CreaControllo(ActionEvent event) throws IOException {
     	if(txtNomeControllo.getText() != null && txtDescrizioneControllo.getText() != null) {
     		String nome = txtNomeControllo.getText();
     		String descrizione = txtDescrizioneControllo.getText();
     		Controllo c = new Controllo(nome, descrizione);
     		
-    		CheckMenuItem checkView = new CheckMenuItem(c.getNome());
-    		listControlli.getItems().add(checkView);
-    		checkItemsControlliView.add(checkView);
-    		controlliSelezionabili.add(c);
+    		aggiungiControlloAllaGrafica(c);
+            CsvControlliManager.salvaControlli(controlliSelezionabili);
     	}
     }
 
     @FXML
-    void CreaEsterno(ActionEvent event) {
+    void CreaEsterno(ActionEvent event) throws IOException {
     	if(txtNomeEsterno.getText() != null && txtCognomeEsterno.getText() != null && txtAziendaEsterno.getText() != null) {
     		String nome = txtNomeEsterno.getText();
     		String cognome = txtCognomeEsterno.getText();
     		String azienda = txtAziendaEsterno.getText();
     		Esterno e = new Esterno(nome, cognome, azienda);
     		
-    		CheckMenuItem check = new CheckMenuItem(e.getNome() + " " + e.getCognome());
-    		CheckMenuItem checkView = new CheckMenuItem(e.getNome() + " " + e.getCognome());
-    		CheckMenuItem checkLicenzia = new CheckMenuItem(e.getNome() + " " + e.getCognome());
-    		listPersonale.getItems().add(check);
-    		listEsterni.getItems().add(checkView);
-    		listLicenzia.getItems().add(checkLicenzia);
-    		checkItemsPersonale.add(check);
-    		checkItemsEsterniView.add(checkView);
-    		checkItemsPersonaleLicenziabile.add(checkLicenzia);
-    		esterniSelezionabili.add(e);
-    		personaleSelezionabile.add(e);
+    		aggiungiEsternoAllaGrafica(e);
+            CsvEsterniManager.salvaEsterni(esterniSelezionabili);
     	}
     }
 
     @FXML
-    void CreaIntervento(ActionEvent event) {
+    void CreaIntervento(ActionEvent event) throws IOException {
     	boolean personaleSelezionato = false;
     	int cabineSelezionate = 0;
     	for(int i=0; i < checkItemsCabine.size(); i++) {
@@ -324,67 +319,49 @@ public class viewController {
             }
             Intervento I = new Intervento(cabinaSelezionata, CI, personaleSelezionatoList, d, Note, esitoPositivo, priorita);
             
-    		CheckMenuItem checkView = new CheckMenuItem(I.getCodiceIntervento());
-    		listInterventi.getItems().add(checkView);
-    		checkItemsInterventiView.add(checkView);
-    		interventiSelezionabili.add(I);
+            aggiungiInterventoAllaGrafica(I);
+            CsvInterventiManager.salvaInterventi(interventiSelezionabili);
         }
     }
 
     @FXML
-    void CreaQuadro(ActionEvent event) {
+    void CreaQuadro(ActionEvent event) throws IOException {
     	if(txtTipoQuadro.getText() != null && txtCodiceQuadro.getText() != null) {
     		String TQ = txtTipoQuadro.getText();
     		String CQ = txtCodiceQuadro.getText();
     		Quadro q = new Quadro(TQ, CQ);
     		
-    		CheckMenuItem check = new CheckMenuItem(q.getCodiceQuadro());
-    		CheckMenuItem checkView = new CheckMenuItem(q.getCodiceQuadro());
-    		listQuadri.getItems().add(check);
-    		listQuadri1.getItems().add(checkView);
-    		checkItemsQuadri.add(check);
-    		checkItemsQuadriView.add(checkView);
-    		quadriSelezionabili.add(q);
+    		aggiungiQuadroAllaGrafica(q);
+            CsvQuadriManager.salvaQuadri(quadriSelezionabili);
     	}
     }
 
     @FXML
-    void CreaTecnicoInterno(ActionEvent event) {
+    void CreaTecnicoInterno(ActionEvent event) throws IOException {
     	if(txtNomeTecnico.getText() != null && txtCognomeTecnico.getText() != null) {
     		String nome = txtNomeTecnico.getText();
     		String cognome = txtCognomeTecnico.getText();
     		Tecnico t = new Tecnico(nome, cognome);
     		
-    		CheckMenuItem check = new CheckMenuItem(t.getNome() + " " + t.getCognome());
-    		CheckMenuItem checkView = new CheckMenuItem(t.getNome() + " " + t.getCognome());
-    		CheckMenuItem checkLicenzia = new CheckMenuItem(t.getNome() + " " + t.getCognome());
-    		listPersonale.getItems().add(check);
-    		listTecnici.getItems().add(checkView);
-    		listLicenzia.getItems().add(checkLicenzia);
-    		checkItemsPersonale.add(check);
-    		checkItemsTecniciView.add(checkView);
-    		tecniciSelezionabili.add(t);
-    		personaleSelezionabile.add(t);
-    		checkItemsPersonaleLicenziabile.add(checkLicenzia);
+    		aggiungiTecnicoAllaGrafica(t);
+            CsvTecniciManager.salvaTecnici(tecniciSelezionabili);
     	}
     }
 
     @FXML
-    void CreaTipoQuadro(ActionEvent event) {
+    void CreaTipoQuadro(ActionEvent event) throws IOException {
     	if(txtNomeTipo.getText() != null && txtDescrizioneTipo.getText() != null) {
     		String nome = txtNomeTipo.getText();
     		String descrizione = txtDescrizioneTipo.getText();
     		TipoQuadro tq = new TipoQuadro(nome, descrizione);
     		
-    		CheckMenuItem checkView = new CheckMenuItem(tq.getNome());
-    		listTipoQuadri.getItems().add(checkView);
-    		checkItemsTipiQuadriView.add(checkView);
-    		tipiquadriSelezionabili.add(tq);
+    		aggiungiTipoQuadroAllaGrafica(tq);
+            CsvTipoQuadriManager.salvaTipoQuadri(tipiquadriSelezionabili);
     	}
     }
 
     @FXML
-    void VisualizzaCabina(ActionEvent event) {
+    void VisualizzaCabina(ActionEvent event) throws IOException {
     	int cabineSelezionate=0;
     	Cabina cabinaTemporanea;
     	for(int i=0; i < checkItemsCabineView.size(); i++) {
@@ -517,25 +494,216 @@ public class viewController {
     }
     
     @FXML
-    void LicenziaTecnico(ActionEvent event) {
-    	for(int i = 0; i < checkItemsPersonaleLicenziabile.size(); i++) {
-        	if(checkItemsPersonaleLicenziabile.get(i).isSelected() && personaleSelezionabile.get(i).getClass() == Tecnico.class) {
-       			controller.licenziaInt(personaleSelezionabile.get(i));
-       			checkItemsPersonale.remove(i);
-        		checkItemsTecniciView.remove(i);
-        		tecniciSelezionabili.remove(i);
-        	}
-        	if(checkItemsPersonaleLicenziabile.get(i).isSelected() && personaleSelezionabile.get(i).getClass() == Esterno.class) {
-        		controller.licenziaEst((Esterno) personaleSelezionabile.get(i));
-        		checkItemsPersonale.remove(i);
-        		checkItemsEsterniView.remove(i);
-        		esterniSelezionabili.remove(i);
-        	}
+    void LicenziaTecnico(ActionEvent event) throws IOException {
+    	for (int i = 0; i < checkItemsPersonaleLicenziabile.size(); i++) {
+
+            if (checkItemsPersonaleLicenziabile.get(i).isSelected()) {
+
+                Tecnico personaDaRimuovere = personaleSelezionabile.get(i);
+                personaleSelezionabile.remove(personaDaRimuovere);
+                
+                if (personaDaRimuovere.getClass() == Tecnico.class) {
+
+                    tecniciSelezionabili.remove(personaDaRimuovere);
+                    CsvTecniciManager.salvaTecnici(tecniciSelezionabili);
+                    
+                }
+
+                if (personaDaRimuovere.getClass() == Esterno.class) {
+
+                    esterniSelezionabili.remove(personaDaRimuovere);
+                    CsvEsterniManager.salvaEsterni(esterniSelezionabili);
+                    
+                }
+                
+                checkItemsPersonale.remove(i);
+                checkItemsPersonaleLicenziabile.remove(i);
+                listPersonale.getItems().remove(i);
+                listLicenzia.getItems().remove(i);
+                i--;
+                
+            }
+        }
+        ricostruisciListePersonale();
+    }
+    
+    private void ricostruisciListePersonale() {
+    	
+    	listPersonale.getItems().clear();
+        listTecnici.getItems().clear();
+        listEsterni.getItems().clear();
+        listLicenzia.getItems().clear();
+        checkItemsPersonale.clear();
+        checkItemsTecniciView.clear();
+        checkItemsEsterniView.clear();
+        checkItemsPersonaleLicenziabile.clear();
+        personaleSelezionabile.clear();
+        
+        ArrayList<Tecnico> tecSelTemp = new ArrayList<>(tecniciSelezionabili);
+        ArrayList<Esterno> estSelTemp = new ArrayList<>(esterniSelezionabili);
+        tecniciSelezionabili.clear();
+        esterniSelezionabili.clear();
+
+        for (Tecnico t : tecSelTemp) {
+            aggiungiTecnicoAllaGrafica(t);
+        }
+
+        for (Esterno e : estSelTemp) {
+            aggiungiEsternoAllaGrafica(e);
         }
     }
     
+    private void aggiungiQuadroAllaGrafica(Quadro q) {
+        CheckMenuItem check = new CheckMenuItem(q.getCodiceQuadro());
+        CheckMenuItem checkView = new CheckMenuItem(q.getCodiceQuadro());
+
+        listQuadri.getItems().add(check);
+        listQuadri1.getItems().add(checkView);
+
+        checkItemsQuadri.add(check);
+        checkItemsQuadriView.add(checkView);
+
+        quadriSelezionabili.add(q);
+    }
+
+    private void aggiungiCabinaAllaGrafica(Cabina c) {
+        CheckMenuItem check = new CheckMenuItem(c.getCodiceCabina());
+        CheckMenuItem checkView = new CheckMenuItem(c.getCodiceCabina());
+
+        listCabina.getItems().add(check);
+        listCabine1.getItems().add(checkView);
+
+        checkItemsCabine.add(check);
+        checkItemsCabineView.add(checkView);
+
+        cabineSelezionabili.add(c);
+    }
+
+    private void aggiungiTecnicoAllaGrafica(Tecnico t) {
+        CheckMenuItem check = new CheckMenuItem(t.getNome() + " " + t.getCognome());
+        CheckMenuItem checkView = new CheckMenuItem(t.getNome() + " " + t.getCognome());
+        CheckMenuItem checkLicenzia = new CheckMenuItem(t.getNome() + " " + t.getCognome());
+
+        listPersonale.getItems().add(check);
+        listTecnici.getItems().add(checkView);
+        listLicenzia.getItems().add(checkLicenzia);
+
+        checkItemsPersonale.add(check);
+        checkItemsTecniciView.add(checkView);
+        checkItemsPersonaleLicenziabile.add(checkLicenzia);
+
+        tecniciSelezionabili.add(t);
+        personaleSelezionabile.add(t);
+    }
+
+    private void aggiungiEsternoAllaGrafica(Esterno e) {
+        CheckMenuItem check = new CheckMenuItem(e.getNome() + " " + e.getCognome());
+        CheckMenuItem checkView = new CheckMenuItem(e.getNome() + " " + e.getCognome());
+        CheckMenuItem checkLicenzia = new CheckMenuItem(e.getNome() + " " + e.getCognome());
+
+        listPersonale.getItems().add(check);
+        listEsterni.getItems().add(checkView);
+        listLicenzia.getItems().add(checkLicenzia);
+
+        checkItemsPersonale.add(check);
+        checkItemsEsterniView.add(checkView);
+        checkItemsPersonaleLicenziabile.add(checkLicenzia);
+
+        esterniSelezionabili.add(e);
+        personaleSelezionabile.add(e);
+    }
+
+    private void aggiungiControlloAllaGrafica(Controllo c) {
+        CheckMenuItem checkView = new CheckMenuItem(c.getNome());
+
+        listControlli.getItems().add(checkView);
+        checkItemsControlliView.add(checkView);
+
+        controlliSelezionabili.add(c);
+    }
+
+    private void aggiungiTipoQuadroAllaGrafica(TipoQuadro tq) {
+        CheckMenuItem checkView = new CheckMenuItem(tq.getNome());
+
+        listTipoQuadri.getItems().add(checkView);
+        checkItemsTipiQuadriView.add(checkView);
+
+        tipiquadriSelezionabili.add(tq);
+    }
+
+    private void aggiungiInterventoAllaGrafica(Intervento i) {
+        CheckMenuItem checkView = new CheckMenuItem(i.getCodiceIntervento());
+
+        listInterventi.getItems().add(checkView);
+        checkItemsInterventiView.add(checkView);
+
+        interventiSelezionabili.add(i);
+    }
+    
     @FXML
-    void initialize() {
+    void initialize() throws IOException {
+    	
+    	listInterventi.getItems().clear();
+    	listTipoQuadri.getItems().clear();
+    	listControlli.getItems().clear();
+    	listPersonale.getItems().clear();
+        listEsterni.getItems().clear();
+        listLicenzia.getItems().clear();
+        listTecnici.getItems().clear();
+        listCabina.getItems().clear();
+        listCabine1.getItems().clear();
+        listQuadri.getItems().clear();
+        listQuadri1.getItems().clear();
+
+        List<Tecnico> tecniciCaricati = CsvTecniciManager.caricaTecnici();
+
+        for (Tecnico t : tecniciCaricati) {
+            aggiungiTecnicoAllaGrafica(t);
+        }
+
+        List<Esterno> esterniCaricati = CsvEsterniManager.caricaEsterni();
+
+        for (Esterno e : esterniCaricati) {
+            aggiungiEsternoAllaGrafica(e);
+        }
+
+        List<Quadro> quadriCaricati = CsvQuadriManager.caricaQuadri();
+
+        for (Quadro q : quadriCaricati) {
+            aggiungiQuadroAllaGrafica(q);
+        }
+        
+        List<Cabina> cabineCaricate =
+                CsvCabineManager.caricaCabine(quadriSelezionabili);
+
+        for (Cabina c : cabineCaricate) {
+            aggiungiCabinaAllaGrafica(c);
+        }
+
+        List<Controllo> controlliCaricati =
+                CsvControlliManager.caricaControlli();
+
+        for (Controllo c : controlliCaricati) {
+            aggiungiControlloAllaGrafica(c);
+        }
+
+        List<TipoQuadro> tipiCaricati =
+                CsvTipoQuadriManager.caricaTipoQuadri();
+
+        for (TipoQuadro tq : tipiCaricati) {
+            aggiungiTipoQuadroAllaGrafica(tq);
+        }
+
+        List<Intervento> interventiCaricati =
+                CsvInterventiManager.caricaInterventi(
+                        cabineSelezionabili,
+                        personaleSelezionabile
+                );
+
+        for (Intervento i : interventiCaricati) {
+            aggiungiInterventoAllaGrafica(i);
+        }
+    	
         assert txtTipoQuadro != null : "fx:id=\"txtTipoQuadro\" was not injected: check your FXML file 'view.fxml'.";
         assert txtCodiceQuadro != null : "fx:id=\"txtCodiceQuadro\" was not injected: check your FXML file 'view.fxml'.";
         assert btnTecnicoEsterno != null : "fx:id=\"btnTecnicoEsterno\" was not injected: check your FXML file 'view.fxml'.";

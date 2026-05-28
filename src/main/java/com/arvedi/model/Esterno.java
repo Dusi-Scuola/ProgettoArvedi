@@ -28,11 +28,6 @@ public class Esterno extends Tecnico{
 			this.azienda = azienda;
 		}
 		
-		public void licenziaEsterno() {
-			this.nome=null;
-			this.cognome=null;
-			this.azienda=null;
-		}
 	//TOSTRING
 		@Override
 		public String toString() {
