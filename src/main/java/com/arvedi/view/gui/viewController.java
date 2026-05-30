@@ -53,7 +53,7 @@ public class viewController {
     private URL location;
 
     @FXML
-    private TextField txtTipoQuadro;
+    private MenuButton listTQ;
 
     @FXML
     private Button btnLicenzia;
@@ -228,6 +228,7 @@ public class viewController {
     private ArrayList<CheckMenuItem> checkItemsControlliView = new ArrayList<>();
     private ArrayList<CheckMenuItem> checkItemsInterventiView = new ArrayList<>();
     private ArrayList<CheckMenuItem> checkItemsTipiQuadriView = new ArrayList<>();
+    private ArrayList<CheckMenuItem> checkItemsTipiQuadri = new ArrayList<>();
     private ArrayList<CheckMenuItem> checkItemsPersonale = new ArrayList<>();
     private ArrayList<CheckMenuItem> checkItemsTecniciView = new ArrayList<>();
     private ArrayList<CheckMenuItem> checkItemsEsterniView = new ArrayList<>();
@@ -235,129 +236,37 @@ public class viewController {
     
     @FXML
     void CreaCabina(ActionEvent event) throws IOException {
-    	boolean quadroSelezionato = false;
-    	for(int i=0; i < checkItemsQuadri.size(); i++) {
-    		if(checkItemsQuadri.get(i).isSelected()) {
-    			quadroSelezionato = true;
-    		}
-    	}
-    	if (quadroSelezionato && txtCodiceCabina.getText() != null && txtPosizione.getText() != null) {
-    		String CC = txtCodiceCabina.getText();
-            String P = txtPosizione.getText();
-            
-            ArrayList<Quadro> selezionati = new ArrayList<>();
-            
-            for(int i = 0; i < checkItemsQuadri.size(); i++) {
-            	if(checkItemsQuadri.get(i).isSelected()) {
-            		selezionati.add(quadriSelezionabili.get(i));
-            	}
-            }
-            Cabina c = new Cabina(CC, P, selezionati);
-            
-            aggiungiCabinaAllaGrafica(c);
-            CsvCabineManager.salvaCabine(cabineSelezionabili);
-        }
+    	controller.generaCabina(txtCodiceCabina.getText(), txtPosizione.getText());
     }
 
     @FXML
     void CreaControllo(ActionEvent event) throws IOException {
-    	if(txtNomeControllo.getText() != null && txtDescrizioneControllo.getText() != null) {
-    		String nome = txtNomeControllo.getText();
-    		String descrizione = txtDescrizioneControllo.getText();
-    		Controllo c = new Controllo(nome, descrizione);
-    		
-    		aggiungiControlloAllaGrafica(c);
-            CsvControlliManager.salvaControlli(controlliSelezionabili);
-    	}
+    	controller.generaControllo(txtNomeControllo.getText(), txtDescrizioneControllo.getText());
     }
 
     @FXML
     void CreaEsterno(ActionEvent event) throws IOException {
-    	if(txtNomeEsterno.getText() != null && txtCognomeEsterno.getText() != null && txtAziendaEsterno.getText() != null) {
-    		String nome = txtNomeEsterno.getText();
-    		String cognome = txtCognomeEsterno.getText();
-    		String azienda = txtAziendaEsterno.getText();
-    		Esterno e = new Esterno(nome, cognome, azienda);
-    		
-    		aggiungiEsternoAllaGrafica(e);
-            CsvEsterniManager.salvaEsterni(esterniSelezionabili);
-    	}
+    	controller.generaEsterno(txtNomeEsterno.getText(), txtCognomeEsterno.getText(), txtAziendaEsterno.getText());
     }
 
     @FXML
     void CreaIntervento(ActionEvent event) throws IOException {
-    	boolean personaleSelezionato = false;
-    	int cabineSelezionate = 0;
-    	for(int i=0; i < checkItemsCabine.size(); i++) {
-    		if(checkItemsCabine.get(i).isSelected()) {
-    			cabineSelezionate++;
-    		}
-    	}
-    	for(int i=0; i < checkItemsPersonale.size(); i++) {
-        	if(checkItemsPersonale.get(i).isSelected()) {
-        		personaleSelezionato = true;
-        	}
-    	}
-    	if (personaleSelezionato && cabineSelezionate == 1 && txtPriorita.getText() != null && txtCodiceIntervento.getText() != null && dateData.getValue() != null) {
-    		int priorita = Integer.parseInt(txtPriorita.getText());
-            String CI = txtCodiceIntervento.getText();
-            String Note = txtNote.getText();
-            Cabina cabinaSelezionata = null;
-            ArrayList<Tecnico> personaleSelezionatoList = new ArrayList<>();
-            LocalDate d = dateData.getValue();
-            boolean esitoPositivo = radPositivo.isSelected();
-            
-            for(int i = 0; i < checkItemsPersonale.size(); i++) {
-            	if(checkItemsPersonale.get(i).isSelected()) {
-            		personaleSelezionatoList.add(personaleSelezionabile.get(i));
-            	}
-            }
-            for(int i = 0; i < checkItemsCabine.size(); i++) {
-            	if(checkItemsCabine.get(i).isSelected()) {
-            		cabinaSelezionata = cabineSelezionabili.get(i);
-            	}
-            }
-            Intervento I = new Intervento(cabinaSelezionata, CI, personaleSelezionatoList, d, Note, esitoPositivo, priorita);
-            
-            aggiungiInterventoAllaGrafica(I);
-            CsvInterventiManager.salvaInterventi(interventiSelezionabili);
-        }
+    	controller.generaIntervento(Integer.parseInt(txtPriorita.getText()), txtCodiceIntervento.getText(), txtNote.getText(), dateData.getValue(), radPositivo.isSelected());
     }
 
     @FXML
     void CreaQuadro(ActionEvent event) throws IOException {
-    	if(txtTipoQuadro.getText() != null && txtCodiceQuadro.getText() != null) {
-    		String TQ = txtTipoQuadro.getText();
-    		String CQ = txtCodiceQuadro.getText();
-    		Quadro q = new Quadro(TQ, CQ);
-    		
-    		aggiungiQuadroAllaGrafica(q);
-            CsvQuadriManager.salvaQuadri(quadriSelezionabili);
-    	}
+    	controller.generaQuadro(txtCodiceQuadro.getText());
     }
 
     @FXML
     void CreaTecnicoInterno(ActionEvent event) throws IOException {
-    	if(txtNomeTecnico.getText() != null && txtCognomeTecnico.getText() != null) {
-    		String nome = txtNomeTecnico.getText();
-    		String cognome = txtCognomeTecnico.getText();
-    		Tecnico t = new Tecnico(nome, cognome);
-    		
-    		aggiungiTecnicoAllaGrafica(t);
-            CsvTecniciManager.salvaTecnici(tecniciSelezionabili);
-    	}
+    	controller.generaTecnicoInterno(txtNomeTecnico.getText(), txtCognomeTecnico.getText());
     }
 
     @FXML
     void CreaTipoQuadro(ActionEvent event) throws IOException {
-    	if(txtNomeTipo.getText() != null && txtDescrizioneTipo.getText() != null) {
-    		String nome = txtNomeTipo.getText();
-    		String descrizione = txtDescrizioneTipo.getText();
-    		TipoQuadro tq = new TipoQuadro(nome, descrizione);
-    		
-    		aggiungiTipoQuadroAllaGrafica(tq);
-            CsvTipoQuadriManager.salvaTipoQuadri(tipiquadriSelezionabili);
-    	}
+    	controller.generaTipoQuadro(txtNomeTipo.getText(), txtDescrizioneTipo.getText());a
     }
 
     @FXML
@@ -624,9 +533,12 @@ public class viewController {
 
     private void aggiungiTipoQuadroAllaGrafica(TipoQuadro tq) {
         CheckMenuItem checkView = new CheckMenuItem(tq.getNome());
+        CheckMenuItem check = new CheckMenuItem(tq.getNome());
 
         listTipoQuadri.getItems().add(checkView);
         checkItemsTipiQuadriView.add(checkView);
+        listTQ.getItems().add(check);
+        checkItemsTipiQuadri.add(check);
 
         tipiquadriSelezionabili.add(tq);
     }
@@ -654,6 +566,7 @@ public class viewController {
         listCabine1.getItems().clear();
         listQuadri.getItems().clear();
         listQuadri1.getItems().clear();
+        listTQ.getItems().clear();
 
         List<Tecnico> tecniciCaricati = CsvTecniciManager.caricaTecnici();
 
@@ -667,7 +580,7 @@ public class viewController {
             aggiungiEsternoAllaGrafica(e);
         }
 
-        List<Quadro> quadriCaricati = CsvQuadriManager.caricaQuadri();
+        List<Quadro> quadriCaricati = CsvQuadriManager.caricaQuadri(tipiquadriSelezionabili);
 
         for (Quadro q : quadriCaricati) {
             aggiungiQuadroAllaGrafica(q);
@@ -704,7 +617,7 @@ public class viewController {
             aggiungiInterventoAllaGrafica(i);
         }
     	
-        assert txtTipoQuadro != null : "fx:id=\"txtTipoQuadro\" was not injected: check your FXML file 'view.fxml'.";
+        assert listTQ != null : "fx:id=\"listTQ\" was not injected: check your FXML file 'view.fxml'.";
         assert txtCodiceQuadro != null : "fx:id=\"txtCodiceQuadro\" was not injected: check your FXML file 'view.fxml'.";
         assert btnTecnicoEsterno != null : "fx:id=\"btnTecnicoEsterno\" was not injected: check your FXML file 'view.fxml'.";
         assert listQuadri != null : "fx:id=\"listQuadri\" was not injected: check your FXML file 'view.fxml'.";

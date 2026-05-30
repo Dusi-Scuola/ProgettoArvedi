@@ -1,6 +1,8 @@
 package com.arvedi.csv_manager;
 
+import com.arvedi.model.Cabina;
 import com.arvedi.model.Quadro;
+import com.arvedi.model.TipoQuadro;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -22,14 +24,14 @@ public class CsvQuadriManager {
         writer.newLine();
 
         for (Quadro q : quadri) {
-            writer.write(q.getTipologia() + ";" + q.getCodiceQuadro());
+            writer.write(q.getTipologia().getNome() + ";" + q.getCodiceQuadro());
             writer.newLine();
         }
 
         writer.close();
     }
 
-    public static List<Quadro> caricaQuadri() throws IOException {
+    public static List<Quadro> caricaQuadri(List<TipoQuadro> tipiquadriSelezionabili) throws IOException {
         List<Quadro> quadri = new ArrayList<>();
         Path path = Paths.get(FILE_PATH);
 
@@ -51,8 +53,14 @@ public class CsvQuadriManager {
             String[] campi = line.split(";", -1);
 
             if (campi.length >= 2) {
-                Quadro q = new Quadro(campi[0], campi[1]);
-                quadri.add(q);
+            	String codice = campi[1];
+            	String nomeTipoQuadro = campi[2];
+                TipoQuadro TQ = trovaTQ(tipiquadriSelezionabili, nomeTipoQuadro);
+                
+                if(TQ != null) {
+                	Quadro q = new Quadro(TQ, codice);
+                	quadri.add(q);
+                }
             }
         }
 
@@ -60,4 +68,15 @@ public class CsvQuadriManager {
 
         return quadri;
     }
+    
+    private static TipoQuadro trovaTQ(List<TipoQuadro> tipiquadriSelezionabili, String nomeTipoQuadro) {
+        for (TipoQuadro t : tipiquadriSelezionabili) {
+            if (t.getNome().equals(nomeTipoQuadro)) {
+                return t;
+            }
+        }
+
+        return null;
+    }
+    
 }

@@ -13,20 +13,20 @@ package com.arvedi.model;
  */
 public class Quadro{
 	//DICHIARAZIONE ATTRIBUTI
-	private String tipologia;
+	private TipoQuadro tipologia;
 	private String codiceQuadro;
 	
 //COSTRUTTORE E METODI GETTER E SETTER
-	public Quadro(String tipologia, String codiceQuadro) {
+	public Quadro(TipoQuadro tipologia, String codiceQuadro) {
 		this.tipologia = tipologia;
 		this.codiceQuadro = codiceQuadro;
 		}
 
-		public String getTipologia() {
+		public TipoQuadro getTipologia() {
 			return tipologia;
 		}
 		
-		public void setTipologia(String tipologia) {
+		public void setTipologia(TipoQuadro tipologia) {
 			this.tipologia = tipologia;
 		}
 
