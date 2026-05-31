@@ -1,6 +1,7 @@
 package com.arvedi.app;
 
 import com.arvedi.controller.AppController;
+import com.arvedi.view.gui.viewController;
 import com.arvedi.model.Cabina;
 import com.arvedi.model.Controllo;
 import com.arvedi.model.Esterno;
@@ -76,33 +77,8 @@ public class App {
      * meaningful objects already in place.
      */
     private static AppController newController() {
-        // Sample Quadro
-        Quadro quadro = new Quadro("Quadro MT", "Q001");
-
-        // Sample Cabina (contains a list of Quadro)
-        ArrayList<Quadro> quadri = new ArrayList<>();
-        quadri.add(quadro);
-        Cabina cabina = new Cabina("CAB001", "Zona Nord", quadri);
-
-        // Sample Controllo
-        Controllo controllo = new Controllo("Controllo 2025", "Controllo periodico annuale");
-
-        // Sample Esterno (extends Tecnico)
-        Esterno esterno = new Esterno("Rossi", "Mario", "ElettroService Srl");
-
-        // Sample Tecnico
-        Tecnico tecnico = new Tecnico("Bianchi", "Luigi");
-
-        // Sample Intervento
-        ArrayList<Tecnico> personale = new ArrayList<>();
-        personale.add(tecnico);
-        personale.add(esterno);
-        Intervento intervento = new Intervento(cabina, "INT001", personale, LocalDate.now(), "Nessuna nota", true, 1);
-
-        // Sample TipoQuadro
-        TipoQuadro tipoquadro = new TipoQuadro("Media Tensione", "Quadro per linee MT");
-
-        return new AppController(cabina, controllo, esterno, intervento, quadro, tecnico, tipoquadro);
+    	viewController viewController = new viewController(null);
+        return new AppController(viewController);
     }
 
     /**

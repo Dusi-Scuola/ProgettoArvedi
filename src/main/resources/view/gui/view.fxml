@@ -14,6 +14,15 @@
 
 <TabPane maxHeight="600.0" maxWidth="1070.0" minHeight="0" minWidth="0" prefHeight="490.0" prefWidth="780.0" stylesheets="@style.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.arvedi.view.gui.viewController">
   <tabs>
+    <Tab text="Dashboard">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="490.0" prefWidth="780.0">
+          <children>
+            
+          </children>
+        </AnchorPane>
+      </content>
+    </Tab>
     <Tab text="Gestione anagrafica">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="490.0" prefWidth="780.0">
@@ -103,6 +112,14 @@
             <Label layoutX="93.0" layoutY="34.0" styleClass="section-title" text="LICENZIA TECNICO" />
             <MenuButton fx:id="listLicenzia" layoutX="62.0" layoutY="58.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="160.0" text="Personale" />
             <Button fx:id="btnLicenzia" layoutX="62.0" layoutY="100.0" mnemonicParsing="false" onAction="#LicenziaTecnico" prefHeight="28.0" prefWidth="160.0" styleClass="button-danger" text="Licenzia" />
+            <Label layoutX="12.0" layoutY="220.0" styleClass="section-title" text="VISUALIZZA TECNICO ESTERNO" />
+            <MenuButton fx:id="listEsterni" layoutX="14.0" layoutY="242.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="160.0" text="Tecnico Esterno" />
+            <TextArea fx:id="txtVisualizzaEsterno" editable="false" layoutX="14.0" layoutY="279.0" prefHeight="100.0" prefWidth="160.0" wrapText="true" />
+            <Button fx:id="btnVisualizzaEsterno" layoutX="14.0" layoutY="384.0" mnemonicParsing="false" onAction="#VisualizzaEsterno" prefHeight="26.0" prefWidth="160.0" text="Visualizza Tecnico Esterno" />
+            <Label layoutX="382.0" layoutY="14.0" styleClass="section-title" text="VISUALIZZA TECNICO INTERNO" />
+            <MenuButton fx:id="listTecnici" layoutX="384.0" layoutY="36.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="160.0" text="Tecnico Interno" />
+            <TextArea fx:id="txtVisualizzaTecnico" editable="false" layoutX="384.0" layoutY="73.0" prefHeight="100.0" prefWidth="160.0" wrapText="true" />
+            <Button fx:id="btnVisualizzaTecnico" layoutX="384.0" layoutY="178.0" mnemonicParsing="false" onAction="#VisualizzaTecnico" prefHeight="26.0" prefWidth="160.0" text="Visualizza Tecnico Interno" />
           </children>
         </AnchorPane>
       </content>
