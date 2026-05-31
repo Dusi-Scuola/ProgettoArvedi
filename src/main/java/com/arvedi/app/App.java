@@ -1,7 +1,6 @@
 package com.arvedi.app;
 
 import com.arvedi.controller.AppController;
-import com.arvedi.view.gui.viewController;
 import com.arvedi.model.Cabina;
 import com.arvedi.model.Controllo;
 import com.arvedi.model.Esterno;
@@ -77,8 +76,7 @@ public class App {
      * meaningful objects already in place.
      */
     private static AppController newController() {
-    	viewController viewController = new viewController(null);
-        return new AppController(viewController);
+        return new AppController();
     }
 
     /**

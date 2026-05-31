@@ -236,37 +236,51 @@ public class viewController {
     
     @FXML
     void CreaCabina(ActionEvent event) throws IOException {
-    	controller.generaCabina(txtCodiceCabina.getText(), txtPosizione.getText());
+    	ArrayList<CheckMenuItem> checks = controller.aggiungiCabinaAllaGrafica(controller.generaCabina(txtCodiceCabina.getText(), txtPosizione.getText()));
+        listCabina.getItems().add(checks.get(0));
+        listCabine1.getItems().add(checks.get(1));
     }
 
     @FXML
     void CreaControllo(ActionEvent event) throws IOException {
-    	controller.generaControllo(txtNomeControllo.getText(), txtDescrizioneControllo.getText());
+    	CheckMenuItem checkView = controller.aggiungiControlloAllaGrafica(controller.generaControllo(txtNomeControllo.getText(), txtDescrizioneControllo.getText()));
+        listControlli.getItems().add(checkView);
     }
 
     @FXML
     void CreaEsterno(ActionEvent event) throws IOException {
-    	controller.generaEsterno(txtNomeEsterno.getText(), txtCognomeEsterno.getText(), txtAziendaEsterno.getText());
+    	ArrayList<CheckMenuItem> checks = controller.aggiungiEsternoAllaGrafica(controller.generaEsterno(txtNomeEsterno.getText(), txtCognomeEsterno.getText(), txtAziendaEsterno.getText()));
+        listPersonale.getItems().add(checks.get(0));
+        listEsterni.getItems().add(checks.get(1));
+        listLicenzia.getItems().add(checks.get(2));
     }
 
     @FXML
     void CreaIntervento(ActionEvent event) throws IOException {
-    	controller.generaIntervento(Integer.parseInt(txtPriorita.getText()), txtCodiceIntervento.getText(), txtNote.getText(), dateData.getValue(), radPositivo.isSelected());
+    	CheckMenuItem checkView = controller.aggiungiInterventoAllaGrafica(controller.generaIntervento(Integer.parseInt(txtPriorita.getText()), txtCodiceIntervento.getText(), txtNote.getText(), dateData.getValue(), radPositivo.isSelected()));
+        listInterventi.getItems().add(checkView);
     }
 
     @FXML
     void CreaQuadro(ActionEvent event) throws IOException {
-    	controller.generaQuadro(txtCodiceQuadro.getText());
+    	ArrayList<CheckMenuItem> checks = controller.aggiungiQuadroAllaGrafica(controller.generaQuadro(txtCodiceQuadro.getText()));
+        listQuadri.getItems().add(checks.get(0));
+        listQuadri1.getItems().add(checks.get(1));
     }
 
     @FXML
     void CreaTecnicoInterno(ActionEvent event) throws IOException {
-    	controller.generaTecnicoInterno(txtNomeTecnico.getText(), txtCognomeTecnico.getText());
+    	ArrayList<CheckMenuItem> checks = controller.aggiungiTecnicoAllaGrafica(controller.generaTecnicoInterno(txtNomeTecnico.getText(), txtCognomeTecnico.getText()));
+        listPersonale.getItems().add(checks.get(0));
+        listTecnici.getItems().add(checks.get(1));
+        listLicenzia.getItems().add(checks.get(2));
     }
 
     @FXML
     void CreaTipoQuadro(ActionEvent event) throws IOException {
-    	controller.generaTipoQuadro(txtNomeTipo.getText(), txtDescrizioneTipo.getText());
+    	ArrayList<CheckMenuItem> checks = controller.aggiungiTipoQuadroAllaGrafica(controller.generaTipoQuadro(txtNomeTipo.getText(), txtDescrizioneTipo.getText()));
+        listTipoQuadri.getItems().add(checks.get(0));
+        listTQ.getItems().add(checks.get(1));
     }
 
     @FXML
@@ -307,11 +321,10 @@ public class viewController {
     @FXML
     void LicenziaTecnico(ActionEvent event) throws IOException {
     	ArrayList<Integer> index = controller.Licenzia();
-    	for(int i=0; i<index.size();i++) {
+    	for(int i=0; i<index.getLast()+1;i++) {
     		if(index.get(i) == i) {
     			listPersonale.getItems().remove(i);
                 listLicenzia.getItems().remove(i);
-                i--;
     		}
     	}
     	ricostruisciListePersonaleCollegamento();
@@ -324,49 +337,8 @@ public class viewController {
         listLicenzia.getItems().clear();
         
         controller.ricostruisciListePersonale();
-    }
+    }    
     
-    public void aggiungiQuadroAllaGraficaCollegamento(Quadro q) {
-    	ArrayList<CheckMenuItem> checks = controller.aggiungiQuadroAllaGrafica(q);
-        listQuadri.getItems().add(checks.get(0));
-        listQuadri1.getItems().add(checks.get(1));
-    }
-
-    public void aggiungiCabinaAllaGraficaCollegamento(Cabina c) {
-    	ArrayList<CheckMenuItem> checks = controller.aggiungiCabinaAllaGrafica(c);
-        listCabina.getItems().add(checks.get(0));
-        listCabine1.getItems().add(checks.get(1));
-    }
-
-    public void aggiungiTecnicoAllaGraficaCollegamento(Tecnico t) {
-    	ArrayList<CheckMenuItem> checks = controller.aggiungiTecnicoAllaGrafica(t);
-        listPersonale.getItems().add(checks.get(0));
-        listTecnici.getItems().add(checks.get(1));
-        listLicenzia.getItems().add(checks.get(2));
-    }
-
-    public void aggiungiEsternoAllaGraficaCollegamento(Esterno e) {
-    	ArrayList<CheckMenuItem> checks = controller.aggiungiEsternoAllaGrafica(e);
-        listPersonale.getItems().add(checks.get(0));
-        listEsterni.getItems().add(checks.get(1));
-        listLicenzia.getItems().add(checks.get(2));
-    }
-
-    public void aggiungiControlloAllaGraficaCollegamento(Controllo c) {
-        CheckMenuItem checkView = controller.aggiungiControlloAllaGrafica(c);
-        listControlli.getItems().add(checkView);
-    }
-
-    public void aggiungiTipoQuadroAllaGraficaCollegamento(TipoQuadro tq) {
-    	ArrayList<CheckMenuItem> checks = controller.aggiungiTipoQuadroAllaGrafica(tq);
-        listTipoQuadri.getItems().add(checks.get(0));
-        listTQ.getItems().add(checks.get(1));
-    }
-
-    public void aggiungiInterventoAllaGraficaCollegamento(Intervento I) {
-    	CheckMenuItem checkView = controller.aggiungiInterventoAllaGrafica(I);
-        listInterventi.getItems().add(checkView);
-    }
     
     @FXML
     void initialize() throws IOException {
@@ -384,53 +356,46 @@ public class viewController {
         listQuadri1.getItems().clear();
         listTQ.getItems().clear();
 
-        List<Tecnico> tecniciCaricati = CsvTecniciManager.caricaTecnici();
-
-        for (Tecnico t : tecniciCaricati) {
-            aggiungiTecnicoAllaGraficaCollegamento(t);
+        for (Tecnico t : controller.tecniciCsv()) {
+        	ArrayList<CheckMenuItem> checks = controller.aggiungiTecnicoAllaGrafica(t);
+            listPersonale.getItems().add(checks.get(0));
+            listTecnici.getItems().add(checks.get(1));
+            listLicenzia.getItems().add(checks.get(2));
         }
 
-        List<Esterno> esterniCaricati = CsvEsterniManager.caricaEsterni();
-
-        for (Esterno e : esterniCaricati) {
-            aggiungiEsternoAllaGraficaCollegamento(e);
+        for (Esterno e : controller.esterniCsv()) {
+        	ArrayList<CheckMenuItem> checks = controller.aggiungiEsternoAllaGrafica(e);
+            listPersonale.getItems().add(checks.get(0));
+            listEsterni.getItems().add(checks.get(1));
+            listLicenzia.getItems().add(checks.get(2));
         }
 
-        List<Quadro> quadriCaricati = CsvQuadriManager.caricaQuadri(tipiquadriSelezionabili);
-
-        for (Quadro q : quadriCaricati) {
-            aggiungiQuadroAllaGraficaCollegamento(q);
+        for (Quadro q : controller.quadriCsv()) {
+        	ArrayList<CheckMenuItem> checks = controller.aggiungiQuadroAllaGrafica(q);
+            listQuadri.getItems().add(checks.get(0));
+            listQuadri1.getItems().add(checks.get(1));
         }
         
-        List<Cabina> cabineCaricate =
-                CsvCabineManager.caricaCabine(quadriSelezionabili);
-
-        for (Cabina c : cabineCaricate) {
-            aggiungiCabinaAllaGraficaCollegamento(c);
+        for (Cabina c : controller.cabineCsv()) {
+        	ArrayList<CheckMenuItem> checks = controller.aggiungiCabinaAllaGrafica(c);
+            listCabina.getItems().add(checks.get(0));
+            listCabine1.getItems().add(checks.get(1));
         }
 
-        List<Controllo> controlliCaricati =
-                CsvControlliManager.caricaControlli();
-
-        for (Controllo c : controlliCaricati) {
-            aggiungiControlloAllaGraficaCollegamento(c);
+        for (Controllo c : controller.controlliCsv()) {
+        	CheckMenuItem checkView = controller.aggiungiControlloAllaGrafica(c);
+            listControlli.getItems().add(checkView);
         }
 
-        List<TipoQuadro> tipiCaricati =
-                CsvTipoQuadriManager.caricaTipoQuadri();
-
-        for (TipoQuadro tq : tipiCaricati) {
-            aggiungiTipoQuadroAllaGraficaCollegamento(tq);
+        for (TipoQuadro tq : controller.tipoquadriCsv()) {
+        	ArrayList<CheckMenuItem> checks = controller.aggiungiTipoQuadroAllaGrafica(tq);
+            listTipoQuadri.getItems().add(checks.get(0));
+            listTQ.getItems().add(checks.get(1));
         }
 
-        List<Intervento> interventiCaricati =
-                CsvInterventiManager.caricaInterventi(
-                        cabineSelezionabili,
-                        personaleSelezionabile
-                );
-
-        for (Intervento i : interventiCaricati) {
-            aggiungiInterventoAllaGraficaCollegamento(i);
+        for (Intervento I : controller.interventiCsv()) {
+        	CheckMenuItem checkView = controller.aggiungiInterventoAllaGrafica(I);
+            listInterventi.getItems().add(checkView);
         }
     	
         assert listTQ != null : "fx:id=\"listTQ\" was not injected: check your FXML file 'view.fxml'.";

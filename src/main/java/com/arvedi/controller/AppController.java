@@ -69,14 +69,15 @@ public class AppController {
 	 private ArrayList<CheckMenuItem> checkItemsEsterniView = new ArrayList<>();
 	 private ArrayList<CheckMenuItem> checkItemsPersonaleLicenziabile = new ArrayList<>();        
 
-	 private final viewController viewController;
 	 
-     public AppController(viewController viewController) {
-         this.viewController = viewController;
+	 
+     public AppController() {
+    	 
      }
 
-     public void generaCabina(String CodiceCabina, String Posizione) throws IOException {
+     public Cabina generaCabina(String CodiceCabina, String Posizione) throws IOException {
     	boolean quadroSelezionato = false;
+    	Cabina c = null;
      	for(int i=0; i < checkItemsQuadri.size(); i++) {
      		if(checkItemsQuadri.get(i).isSelected()) {
      			quadroSelezionato = true;
@@ -91,35 +92,38 @@ public class AppController {
              		selezionati.add(quadriSelezionabili.get(i));
              	}
              }
-             Cabina c = new Cabina(CodiceCabina, Posizione, selezionati);
+             c = new Cabina(CodiceCabina, Posizione, selezionati);
              
-             viewController.aggiungiCabinaAllaGraficaCollegamento(c);
              CsvCabineManager.salvaCabine(cabineSelezionabili);
          }
+     	 return c;
      }
      
-     public void generaControllo(String NomeControllo, String DescrizioneControllo) throws IOException {
+     public Controllo generaControllo(String NomeControllo, String DescrizioneControllo) throws IOException {
+    	Controllo c = null;
     	if(NomeControllo != null && DescrizioneControllo != null) {
     		 
-     		Controllo c = new Controllo(NomeControllo, DescrizioneControllo);
+     		c = new Controllo(NomeControllo, DescrizioneControllo);
      		
-     		viewController.aggiungiControlloAllaGraficaCollegamento(c);
             CsvControlliManager.salvaControlli(controlliSelezionabili);
      	}
+    	return c;
      }
      
-     public void generaEsterno(String nome, String cognome, String azienda) throws IOException {
+     public Esterno generaEsterno(String nome, String cognome, String azienda) throws IOException {
+    	 Esterno e = null;
     	 if(nome != null && cognome != null && azienda != null) {
    
-     		Esterno e = new Esterno(nome, cognome, azienda);
+     		e = new Esterno(nome, cognome, azienda);
      		
-     		viewController.aggiungiEsternoAllaGraficaCollegamento(e);
             CsvEsterniManager.salvaEsterni(esterniSelezionabili);
      	}
+    	return e;
      }
      
-     public void generaIntervento(int priorita, String CI, String Note, LocalDate d, boolean esitoPositivo) throws IOException {
+     public Intervento generaIntervento(int priorita, String CI, String Note, LocalDate d, boolean esitoPositivo) throws IOException {
     	boolean personaleSelezionato = false;
+    	Intervento I = null;
      	int cabineSelezionate = 0;
      	for(int i=0; i < checkItemsCabine.size(); i++) {
      		if(checkItemsCabine.get(i).isSelected()) {
@@ -145,14 +149,15 @@ public class AppController {
              		cabinaSelezionata = cabineSelezionabili.get(i);
              	}
              }
-             Intervento I = new Intervento(cabinaSelezionata, CI, personaleSelezionatoList, d, Note, esitoPositivo, priorita);
+             I = new Intervento(cabinaSelezionata, CI, personaleSelezionatoList, d, Note, esitoPositivo, priorita);
              
-             viewController.aggiungiInterventoAllaGraficaCollegamento(I);
              CsvInterventiManager.salvaInterventi(interventiSelezionabili);
          }
+     	return I;
      }
      
-     public void generaQuadro(String CQ) throws IOException {
+     public Quadro generaQuadro(String CQ) throws IOException {
+    	Quadro q = null;
     	int TQselezionati = 0;
      	for(int i=0; i < checkItemsTipiQuadri.size(); i++) {
      		if(checkItemsTipiQuadri.get(i).isSelected()) {
@@ -169,29 +174,31 @@ public class AppController {
              	}
              }
      		
-     		Quadro q = new Quadro(TQ, CQ);
+     		q = new Quadro(TQ, CQ);
      		
-     		viewController.aggiungiQuadroAllaGraficaCollegamento(q);
             CsvQuadriManager.salvaQuadri(quadriSelezionabili);
      	}
+     	return q;
      }
      
-     public void generaTecnicoInterno(String nome, String cognome) throws IOException {
+     public Tecnico generaTecnicoInterno(String nome, String cognome) throws IOException {
+    	 Tecnico t = null;
     	 if(nome != null && cognome != null) {
-     		Tecnico t = new Tecnico(nome, cognome);
+     		t = new Tecnico(nome, cognome);
      		
-     		viewController.aggiungiTecnicoAllaGraficaCollegamento(t);
             CsvTecniciManager.salvaTecnici(tecniciSelezionabili);
      	}
+    	return t;
      }
      
-     public void generaTipoQuadro(String nome, String descrizione) throws IOException {
+     public TipoQuadro generaTipoQuadro(String nome, String descrizione) throws IOException {
+    	 TipoQuadro tq = null;
     	 if(nome != null && descrizione != null) {
-     		TipoQuadro tq = new TipoQuadro(nome, descrizione);
+     		tq = new TipoQuadro(nome, descrizione);
      		
-     		viewController.aggiungiTipoQuadroAllaGraficaCollegamento(tq);
             CsvTipoQuadriManager.salvaTipoQuadri(tipiquadriSelezionabili);
      	}
+    	 return tq;
      }
      
      public String viewCabina() {
@@ -487,6 +494,34 @@ public class AppController {
 
          interventiSelezionabili.add(I);
          return checkView;
+     }
+     
+     public List<Tecnico> tecniciCsv() throws IOException{
+    	 return CsvTecniciManager.caricaTecnici();
+     }
+     
+     public List<Esterno> esterniCsv() throws IOException{
+    	 return CsvEsterniManager.caricaEsterni();
+     }
+     
+     public List<Quadro> quadriCsv() throws IOException{
+    	 return CsvQuadriManager.caricaQuadri(tipiquadriSelezionabili);
+     }
+     
+     public List<Cabina> cabineCsv() throws IOException{
+    	 return CsvCabineManager.caricaCabine(quadriSelezionabili);
+     }
+     
+     public List<Controllo> controlliCsv() throws IOException{
+    	 return CsvControlliManager.caricaControlli();
+     }
+     
+     public List<TipoQuadro> tipoquadriCsv() throws IOException{
+    	 return CsvTipoQuadriManager.caricaTipoQuadri();
+     }
+     
+     public List<Intervento> interventiCsv() throws IOException{
+    	 return CsvInterventiManager.caricaInterventi(cabineSelezionabili, personaleSelezionabile);
      }
      
 }
