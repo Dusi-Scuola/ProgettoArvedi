@@ -321,7 +321,7 @@ public class viewController {
     @FXML
     void LicenziaTecnico(ActionEvent event) throws IOException {
     	ArrayList<Integer> index = controller.Licenzia();
-    	for(int i=0; i<index.getLast()+1;i++) {
+    	for(int i=0; i<index.getLast();i++) {
     		if(index.get(i) == i) {
     			listPersonale.getItems().remove(i);
                 listLicenzia.getItems().remove(i);
