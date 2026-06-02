@@ -37,6 +37,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.PieChart;
 
 public class viewController {
 	
@@ -51,6 +53,18 @@ public class viewController {
 
     @FXML
     private URL location;
+    
+    @FXML
+    private BarChart chartInterventiNumero;
+    
+    @FXML
+    private PieChart chartInterventiPercentuale;
+    
+    @FXML
+    private TextArea txtVisualizzaPersonale;
+    
+    @FXML
+    private Button btnVisualizzaAllPersonale;
 
     @FXML
     private MenuButton listTQ;
@@ -284,6 +298,11 @@ public class viewController {
     }
 
     @FXML
+    void VisualizzaAllPersonale(ActionEvent event) {
+    	txtVisualizzaPersonale.setText(controller.viewPersonale());
+    }
+    
+    @FXML
     void VisualizzaCabina(ActionEvent event) throws IOException {    	
     	txtVisualizzaCabina.setText(controller.viewCabina());    
     }
@@ -321,11 +340,12 @@ public class viewController {
     @FXML
     void LicenziaTecnico(ActionEvent event) throws IOException {
     	ArrayList<Integer> index = controller.Licenzia();
-    	for(int i=0; i<index.getLast();i++) {
-    		if(index.get(i) == i) {
-    			listPersonale.getItems().remove(i);
-                listLicenzia.getItems().remove(i);
-    		}
+    	int idx;
+    	for(int i = index.size() - 1; i >= 0; i--) {
+    	    idx = index.get(i);
+
+    	    listPersonale.getItems().remove(idx);
+    	    listLicenzia.getItems().remove(idx);
     	}
     	ricostruisciListePersonaleCollegamento();
     }
@@ -451,6 +471,10 @@ public class viewController {
         assert listInterventi != null : "fx:id=\"listInterventi\" was not injected: check your FXML file 'view.fxml'.";
         assert listLicenzia != null : "fx:id=\"listLicenziaInterni\" was not injected: check your FXML file 'view.fxml'.";
         assert btnLicenzia != null : "fx:id=\"btnLicenziaEsterno\" was not injected: check your FXML file 'view.fxml'.";
-
+        assert chartInterventiNumero != null : "fx:id=\"chartInterventiNumero\" was not injected: check your FXML file 'view.fxml'.";
+        assert chartInterventiPercentuale != null : "fx:id=\"chartInterventiPercentuale\" was not injected: check your FXML file 'view.fxml'.";
+        assert txtVisualizzaPersonale != null : "fx:id=\"txtVisualizzaPersonale\" was not injected: check your FXML file 'view.fxml'.";
+        assert btnVisualizzaAllPersonale != null : "fx:id=\"btnVisualizzaAllPersonale\" was not injected: check your FXML file 'view.fxml'.";
+        
     }
 }

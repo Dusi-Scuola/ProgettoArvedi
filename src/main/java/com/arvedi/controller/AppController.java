@@ -524,4 +524,12 @@ public class AppController {
     	 return CsvInterventiManager.caricaInterventi(cabineSelezionabili, personaleSelezionabile);
      }
      
+     public String viewPersonale() {
+    	 String personale = "";
+    	 for(int i=0; i<personaleSelezionabile.size(); i++) {
+    		 personale = personale + " " + personaleSelezionabile.get(i).toString();
+    	 }
+    	 return personale;
+     }
+     
 }
