@@ -1,17 +1,8 @@
 package com.arvedi.app;
 
 import com.arvedi.controller.AppController;
-import com.arvedi.model.Cabina;
-import com.arvedi.model.Controllo;
-import com.arvedi.model.Esterno;
-import com.arvedi.model.Intervento;
-import com.arvedi.model.Quadro;
-import com.arvedi.model.Tecnico;
-import com.arvedi.model.TipoQuadro;
 import com.arvedi.view.gui.GuiApp;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 

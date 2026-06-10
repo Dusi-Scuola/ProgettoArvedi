@@ -339,14 +339,7 @@ public class viewController {
     
     @FXML
     void LicenziaTecnico(ActionEvent event) throws IOException {
-    	ArrayList<Integer> index = controller.Licenzia();
-    	int idx;
-    	for(int i = index.size() - 1; i >= 0; i--) {
-    	    idx = index.get(i);
-
-    	    listPersonale.getItems().remove(idx);
-    	    listLicenzia.getItems().remove(idx);
-    	}
+    	controller.Licenzia();
     	ricostruisciListePersonaleCollegamento();
     }
     
@@ -356,7 +349,24 @@ public class viewController {
         listEsterni.getItems().clear();
         listLicenzia.getItems().clear();
         
+        ArrayList<Tecnico> tecnici = new ArrayList<>(controller.getTecniciSelezionabili());
+        ArrayList<Esterno> esterni = new ArrayList<>(controller.getEsterniSelezionabili());
+        
         controller.ricostruisciListePersonale();
+        
+        for (Tecnico t : tecnici) {
+        	ArrayList<CheckMenuItem> checks = controller.aggiungiTecnicoAllaGrafica(t);
+            listPersonale.getItems().add(checks.get(0));
+            listTecnici.getItems().add(checks.get(1));
+            listLicenzia.getItems().add(checks.get(2));
+        }
+
+        for (Esterno e : esterni) {
+        	ArrayList<CheckMenuItem> checks = controller.aggiungiEsternoAllaGrafica(e);
+            listPersonale.getItems().add(checks.get(0));
+            listEsterni.getItems().add(checks.get(1));
+            listLicenzia.getItems().add(checks.get(2));
+        }
     }    
     
     

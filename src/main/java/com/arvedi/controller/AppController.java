@@ -74,6 +74,14 @@ public class AppController {
      public AppController() {
     	 
      }
+     
+     public ArrayList<Tecnico> getTecniciSelezionabili() {
+    	 return tecniciSelezionabili;
+     }
+     
+     public ArrayList<Esterno> getEsterniSelezionabili() {
+    	 return esterniSelezionabili;
+     }
 
      public Cabina generaCabina(String CodiceCabina, String Posizione) throws IOException {
     	boolean quadroSelezionato = false;
@@ -341,14 +349,13 @@ public class AppController {
      	return view;
      }
      
-     public ArrayList<Integer> Licenzia() throws IOException {
-    	ArrayList<Integer> index = new ArrayList<>();
+     public void Licenzia() throws IOException {
     	for(int i = 0; i < checkItemsPersonaleLicenziabile.size(); i++) {
 
             if(checkItemsPersonaleLicenziabile.get(i).isSelected()) {
 
                Tecnico personaDaRimuovere = personaleSelezionabile.get(i);
-               personaleSelezionabile.remove(personaDaRimuovere);
+               personaleSelezionabile.remove(i);
                  
                if(personaDaRimuovere.getClass() == Tecnico.class) {
 
@@ -366,12 +373,9 @@ public class AppController {
                  
                checkItemsPersonale.remove(i);
                checkItemsPersonaleLicenziabile.remove(i);
-               index.add(i);
                i--;
-                 
             }
         }
-    	return index;
      }
      
      public void ricostruisciListePersonale() {
@@ -381,19 +385,16 @@ public class AppController {
          checkItemsEsterniView.clear();
          checkItemsPersonaleLicenziabile.clear();
          personaleSelezionabile.clear();
+         tecniciSelezionabili.clear();
+         esterniSelezionabili.clear();
          
          ArrayList<Tecnico> tecSelTemp = new ArrayList<>(tecniciSelezionabili);
          ArrayList<Esterno> estSelTemp = new ArrayList<>(esterniSelezionabili);
          tecniciSelezionabili.clear();
          esterniSelezionabili.clear();
 
-         for (Tecnico t : tecSelTemp) {
-             aggiungiTecnicoAllaGrafica(t);
-         }
-
-         for (Esterno e : estSelTemp) {
-             aggiungiEsternoAllaGrafica(e);
-         }
+         tecniciSelezionabili.addAll(tecSelTemp);
+         esterniSelezionabili.addAll(estSelTemp);
      }
      
      public ArrayList<CheckMenuItem> aggiungiQuadroAllaGrafica(Quadro q) {
